@@ -8,6 +8,7 @@ export const useTasks = (selectedProject) => {
   const [archivedTasks, setArchivedTasks] = useState([]);
 
   useEffect(() => {
+    console.log("this ran");
     let unsubscribe = firebase
       .firestore()
       .collection("tasks")
@@ -20,7 +21,7 @@ export const useTasks = (selectedProject) => {
         ? (unsubscribe = unsubscribe.where(
             "date",
             "==",
-            format(new Date(), "dd-MM-yyyy")
+            format(new Date(), "yyyy, M, dd")
           ))
         : selectedProject === "INBOX" || selectedProject === 0
         ? (unsubscribe = unsubscribe.where("date", "==", ""))
@@ -35,10 +36,10 @@ export const useTasks = (selectedProject) => {
       setTasks(
         selectedProject === "NEXT_7"
           ? newTasks.filter((task) => {
-              const [taskDate] = formatDistanceToNowStrict(
+              const [diff] = formatDistanceToNowStrict(
                 new Date(task.date)
               ).split(" ", 1);
-              return taskDate <= 7 && task.archived !== true;
+              return diff <= 7 && task.archived !== true;
             })
           : newTasks.filter((task) => task.archived !== true)
       );
