@@ -11,6 +11,7 @@ module.exports = {
         primary: "#dbdbdb",
         light: "#f1f1f1",
       },
+      black: "#282828",
     },
     extend: {},
   },
