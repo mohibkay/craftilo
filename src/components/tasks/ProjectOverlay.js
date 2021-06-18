@@ -10,11 +10,11 @@ export const ProjectOverlay = ({
   return (
     projects &&
     showProjectOverlay && (
-      <div className="absolute top-24 -right-4 border border-gray-primary bg-white shadow-md w-full">
+      <div className="absolute top-24 -right-4 border border-gray-primary bg-white shadow-md w-1/3">
         <ul className="">
           {projects.map((project) => (
             <li
-              className="p-2 border-b border-gray-primary hover:bg-gray-light font-normal hover:font-bold"
+              className="p-2 px-4 border-b border-gray-primary hover:bg-gray-light font-normal hover:font-bold"
               key={project.projectId}
             >
               <div

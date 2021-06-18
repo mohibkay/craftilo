@@ -6,6 +6,7 @@ import { format, add } from "date-fns";
 import { v4 as uuidv4 } from "uuid";
 import QuickTaskModal from "./QuickTaskModal";
 import { ProjectOverlay } from "./ProjectOverlay";
+import TaskDate from "./TaskDate";
 // import ProjectOverlay from "./ProjectOverlay";
 // import TaskDate from "./TaskDate";
 
@@ -84,8 +85,14 @@ export default function AddTask({
             setProject={setProject}
             showProjectOverlay={showProjectOverlay}
             setShowProjectOverlay={setShowProjectOverlay}
+            setShowTaskDate={setShowTaskDate}
           />
-          {/* <TaskDate /> */}
+          <TaskDate
+            setTaskDate={setTaskDate}
+            showTaskDate={showTaskDate}
+            setShowProjectOverlay={setShowProjectOverlay}
+            setShowTaskDate={setShowTaskDate}
+          />
 
           <input
             type="text"
@@ -99,7 +106,11 @@ export default function AddTask({
             <span className="items-center space-x-4">
               <button
                 className="bg-maroon text-white px-2.5 py-1 mt-2"
-                onClick={addTask}
+                onClick={() => {
+                  addTask();
+                  setShowTaskDate(false);
+                  setShowProjectOverlay(false);
+                }}
               >
                 Add Task
               </button>
@@ -110,6 +121,7 @@ export default function AddTask({
                   onClick={() => {
                     setShowMain(false);
                     setShowProjectOverlay(false);
+                    setShowTaskDate(false);
                   }}
                 >
                   Cancel
@@ -119,17 +131,21 @@ export default function AddTask({
             <span className="flex items-baseline space-x-4">
               <span
                 className="cursor-pointer"
-                onClick={() =>
+                onClick={() => {
                   setShowProjectOverlay(
                     (showProjectOverlay) => !showProjectOverlay
-                  )
-                }
+                  );
+                  setShowTaskDate(false);
+                }}
               >
                 <FaRegListAlt />
               </span>
               <span
                 className="cursor-pointer"
-                onClick={() => setShowTaskDate((showTaskDate) => !showTaskDate)}
+                onClick={() => {
+                  setShowTaskDate((showTaskDate) => !showTaskDate);
+                  setShowProjectOverlay(false);
+                }}
               >
                 <FaRegCalendarAlt />
               </span>
