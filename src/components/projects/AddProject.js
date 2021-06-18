@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { firebase } from "../../lib/firebase";
 import { generatePushId } from "../../helpers";
-import { useProjectsValue } from "../../context";
+// import { useProjectsValue } from "../../context";
 
 export default function AddProject({ shouldShow = false }) {
   const [show, setShow] = useState(shouldShow);
   const [projectName, setProjectName] = useState("");
 
   const projectId = generatePushId();
-  const { setProjects } = useProjectsValue();
+  // const { projects, setProjects } = useProjectsValue();
 
   const addProject = () => {
     projectName &&
@@ -21,7 +21,7 @@ export default function AddProject({ shouldShow = false }) {
           userId: "Xlff7deIcRUcMOCnb8pLEg8QkTU2",
         })
         .then(() => {
-          setProjects([]);
+          // setProjects([...projects]);
           setProjectName("");
           setShow(false);
         });

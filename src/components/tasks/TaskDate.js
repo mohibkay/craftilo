@@ -5,11 +5,16 @@ export default function TaskDate({
   setTaskDate,
   showTaskDate,
   setShowTaskDate,
+  showQuickAddTask,
 }) {
   return (
     <>
       {showTaskDate && (
-        <div className="absolute top-24 -right-4 border border-gray-primary bg-white shadow-md w-1/3">
+        <div
+          className={`absolute -right-4 border border-gray-primary bg-white shadow-md ${
+            showQuickAddTask ? "w-1/2 top-28" : "w-1/3 top-24"
+          }`}
+        >
           <ul>
             <li
               className="flex items-center space-x-2 p-2 pl-4 border-b border-gray-primary hover:bg-gray-light font-normal hover:font-bold cursor-pointer"

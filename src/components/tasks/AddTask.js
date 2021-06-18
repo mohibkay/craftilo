@@ -62,8 +62,9 @@ export default function AddTask({
 
   return (
     <div
-      className={`mt-5 ${
-        showQuickAddTask ? "add-task add-task__overlay" : "add-task"
+      className={`${
+        showQuickAddTask &&
+        "absolute left-1/2 top-72 p-2 pr-8 py-4 border border-gray-primary bg-white shadow-md w-1/4"
       }`}
     >
       {showAddTaskMain && (
@@ -80,18 +81,36 @@ export default function AddTask({
 
       {(showMain || showQuickAddTask) && (
         <div className="relative">
-          {/* {showQuickAddTask && <QuickTaskModal />} */}
+          {showQuickAddTask && (
+            <>
+              <div className="flex justify-between items-baseline">
+                <h2 className="ml-4 font-medium mb-2">Quick Add Task</h2>
+                <span
+                  className="cursor-pointer"
+                  onClick={() => {
+                    setShowMain(false);
+                    setShowProjectOverlay(false);
+                    setShowQuickAddTask(false);
+                  }}
+                >
+                  X
+                </span>
+              </div>
+            </>
+          )}
           <ProjectOverlay
             setProject={setProject}
             showProjectOverlay={showProjectOverlay}
             setShowProjectOverlay={setShowProjectOverlay}
             setShowTaskDate={setShowTaskDate}
+            showQuickAddTask={showQuickAddTask}
           />
           <TaskDate
             setTaskDate={setTaskDate}
             showTaskDate={showTaskDate}
             setShowProjectOverlay={setShowProjectOverlay}
             setShowTaskDate={setShowTaskDate}
+            showQuickAddTask={showQuickAddTask}
           />
 
           <input
@@ -110,6 +129,7 @@ export default function AddTask({
                   addTask();
                   setShowTaskDate(false);
                   setShowProjectOverlay(false);
+                  setShowQuickAddTask(false);
                 }}
               >
                 Add Task

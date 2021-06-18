@@ -14,12 +14,16 @@ export default function Tasks() {
 
   let projectName = "";
 
-  if (projects && selectedProject && !collatedTasksExist(selectedProject)) {
-    projectName = getTitle(projects, selectedProject).name;
+  if (
+    projects.length > 0 &&
+    selectedProject &&
+    !collatedTasksExist(selectedProject)
+  ) {
+    projectName = getTitle(projects, selectedProject)?.name;
   }
 
   if (collatedTasksExist(selectedProject) && selectedProject) {
-    projectName = getCollatedTitle(collatedTasks, selectedProject).name;
+    projectName = getCollatedTitle(collatedTasks, selectedProject)?.name;
   }
 
   useEffect(() => {
@@ -27,7 +31,7 @@ export default function Tasks() {
   }, [projectName]);
 
   return (
-    <div className="px-10 pt-10 border-r border-gray-light col-span-3 h-screen bg-white">
+    <div className="px-0 md:px-10 pt-10 border-r border-gray-light col-span-4 md:col-span-3 h-screen bg-white">
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul className="">
         {tasks.map((task) => (

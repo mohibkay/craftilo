@@ -7,8 +7,8 @@ export default function Header({ darkMode, setDarkMode }) {
   const [showQuickAddTask, setShowQuickAddTask] = useState(false);
 
   return (
-    <header className="bg-maroon sticky w-full">
-      <nav className="flex justify-between items-center text-white py-2 text-xl max-w-screen-lg mx-auto">
+    <header className={`${darkMode ? "bg-black" : "bg-maroon"} sticky w-full`}>
+      <nav className="flex justify-between items-center text-white py-2 px-4 md:px-0 text-xl max-w-screen-lg mx-auto">
         <div className="">
           <h2 className="cursor-pointer">craftilo</h2>
         </div>
@@ -16,8 +16,8 @@ export default function Header({ darkMode, setDarkMode }) {
           <ul className="flex items-baseline space-x-3">
             <li
               className="text-3xl cursor-pointer"
-              onclick={() => {
-                setShowQuickAddTask(true);
+              onClick={() => {
+                setShowQuickAddTask((showQuickAddTask) => !showQuickAddTask);
                 setShouldShowMain(true);
               }}
             >
