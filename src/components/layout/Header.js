@@ -7,8 +7,8 @@ export default function Header({ darkMode, setDarkMode }) {
   //   const [showQuickAddTask, setShowQuickAddTask] = useState(false);
 
   return (
-    <header className="bg-maroon fixed w-full">
-      <nav className="flex justify-around items-center text-white py-2 text-xl">
+    <header className="bg-maroon sticky w-full">
+      <nav className="flex justify-between items-center text-white py-2 text-xl max-w-screen-lg mx-auto">
         <div className="">
           <h2 className="cursor-pointer">craftilo</h2>
         </div>

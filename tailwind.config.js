@@ -5,7 +5,12 @@ module.exports = {
     colors: {
       maroon: "#db4c3f",
       white: "#ffffff",
-      offWhite: "#fafafa",
+      gray: {
+        base: "#616161",
+        background: "#fafafa",
+        primary: "#dbdbdb",
+        light: "#f1f1f1",
+      },
     },
     extend: {},
   },
