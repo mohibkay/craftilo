@@ -29,9 +29,12 @@ export default function Tasks() {
   return (
     <div className="px-10 pt-10 border-r border-gray-light col-span-3 h-screen bg-white">
       <h2 className="text-xl">{projectName}</h2>
-      <ul className="tasks__list">
+      <ul className="">
         {tasks.map((task) => (
-          <li key={task.docId}>
+          <li
+            className="flex items-center space-x-3 text-lg cursor-pointer border-b border-gray-primary m-2 px-2 py-1 pb-2"
+            key={task.docId}
+          >
             <Checkbox id={task.docId} />
             <span>{task.task}</span>
           </li>

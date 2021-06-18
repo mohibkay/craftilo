@@ -26,7 +26,6 @@ export default function AddTask({
     const projectId = project || selectedProject;
     let collatedDate = "";
     const taskId = uuidv4();
-    console.log(taskId);
 
     if (projectId === "TODAY") {
       collatedDate = format(new Date(), "yyyy, M, dd");

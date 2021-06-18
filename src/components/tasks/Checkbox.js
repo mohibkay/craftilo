@@ -1,4 +1,5 @@
 import { firebase } from "../../lib/firebase";
+import { BsCheck } from "react-icons/bs";
 
 export default function Checkbox({ id }) {
   const archiveTask = () => {
@@ -8,8 +9,11 @@ export default function Checkbox({ id }) {
   };
 
   return (
-    <div className="checkbox-holder" onClick={archiveTask}>
-      <span className="checkbox" />
+    <div
+      onClick={archiveTask}
+      className="w-5 h-5 flex group items-center justify-center text-black border border-gray-base rounded-full cursor-pointer"
+    >
+      <BsCheck size="14" className="hidden group-hover:block" />
     </div>
   );
 }
