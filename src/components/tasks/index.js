@@ -45,7 +45,7 @@ export default function Tasks() {
       <ul className="">
         {tasks.map((task) => (
           <li
-            className="flex justify-between items-center text-lg cursor-pointer border-b border-gray-primary m-2 px-2 py-1 pb-2"
+            className="flex justify-between items-center group text-lg cursor-text border-b border-gray-primary m-2 px-2 py-1 pb-2"
             key={task.docId}
           >
             <span className="flex items-center space-x-3">

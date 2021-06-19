@@ -49,8 +49,11 @@ export default function DeleteModal({
   }
 
   return (
-    <div>
-      <FaTrashAlt onClick={openModal} />
+    <div className="group">
+      <FaTrashAlt
+        className="cursor-pointer hidden group-hover:block opacity-50 hover:opacity-100"
+        onClick={openModal}
+      />
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}

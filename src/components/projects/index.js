@@ -14,7 +14,7 @@ export default function Projects({ activeValue = null }) {
         projects.map((project) => (
           <li
             key={project.projectId}
-            className={`flex items-center px-3 py-2.5 cursor-pointer hover:bg-gray-light ${
+            className={`flex group items-center px-3 py-2.5 cursor-pointer hover:bg-gray-light ${
               active === project.projectId && "bg-gray-light font-medium"
             }`}
             onClick={() => {
