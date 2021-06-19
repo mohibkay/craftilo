@@ -50,7 +50,10 @@ export default function DeleteModal({ showConfirm, deleteProject, docId }) {
           <div className="flex items-center space-x-4 mt-4">
             <button
               className="bg-maroon text-white px-3 w-20 py-1 mt-2"
-              onClick={() => deleteProject(docId)}
+              onClick={() => {
+                deleteProject(docId);
+                setIsOpen(false);
+              }}
             >
               Yes
             </button>
