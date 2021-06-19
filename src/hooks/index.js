@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { firebase } from "../lib/firebase";
 import { collatedTasksExist } from "../helpers";
-import { format, formatDistanceToNowStrict } from "date-fns";
+import { format, formatDistanceToNowStrict, isFuture } from "date-fns";
+import { isEqual } from "lodash/lang";
 
 export const useTasks = (selectedProject) => {
   const [tasks, setTasks] = useState([]);
@@ -35,13 +36,15 @@ export const useTasks = (selectedProject) => {
       setTasks(
         selectedProject === "NEXT_7"
           ? newTasks.filter((task) => {
-              if (task.date) {
-                console.log(task.date);
-                const [diff] = formatDistanceToNowStrict(
-                  new Date(task.date)
-                ).split(" ", 1);
+              if (task.date && isFuture(new Date(task.date))) {
+                const taskDate = new Date(task.date);
+
+                const [diff] = formatDistanceToNowStrict(taskDate, {
+                  unit: "day",
+                }).split(" ", 1);
+
                 return diff <= 7 && task.archived !== true;
-              }
+              } else return [];
             })
           : newTasks.filter((task) => task.archived !== true)
       );
@@ -66,11 +69,11 @@ export const useProjects = () => {
       .get()
       .then((snapshot) => {
         const allProjects = snapshot.docs.map((project) => ({
-          ...project.data(),
           docId: project.id,
+          ...project.data(),
         }));
 
-        if (JSON.stringify(allProjects) !== JSON.stringify(projects)) {
+        if (!isEqual(allProjects, projects)) {
           setProjects(allProjects);
         }
       });

@@ -6,8 +6,6 @@ import { format, add } from "date-fns";
 import { v4 as uuidv4 } from "uuid";
 import { ProjectOverlay } from "./ProjectOverlay";
 import TaskDate from "./TaskDate";
-// import ProjectOverlay from "./ProjectOverlay";
-// import TaskDate from "./TaskDate";
 
 export default function AddTask({
   showAddTaskMain = true,
@@ -34,7 +32,6 @@ export default function AddTask({
     } else if (projectId === "NEXT_7") {
       collatedDate = format(add(new Date(), { days: 7 }), "yyyy, M, dd");
     }
-    console.log("collatedDate", collatedDate);
 
     return (
       task &&

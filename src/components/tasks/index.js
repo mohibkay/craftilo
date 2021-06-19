@@ -33,8 +33,7 @@ export default function Tasks() {
   }, [projectName]);
 
   const deleteTask = (taskId) => {
-    const item = firebase.firestore().collection("tasks").doc(taskId).delete();
-    console.log(item);
+    firebase.firestore().collection("tasks").doc(taskId).delete();
   };
 
   return (
