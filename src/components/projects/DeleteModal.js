@@ -15,7 +15,14 @@ const customStyles = {
 
 Modal.setAppElement("*");
 
-export default function DeleteModal({ showConfirm, deleteProject, docId }) {
+export default function DeleteModal({
+  showConfirm,
+  deleteProject = () => {},
+  projectId = "",
+  title = "",
+  deleteTask = () => {},
+  taskId = "",
+}) {
   let subtitle;
   const [modalIsOpen, setIsOpen] = useState(showConfirm);
 
@@ -31,6 +38,16 @@ export default function DeleteModal({ showConfirm, deleteProject, docId }) {
     setIsOpen(false);
   }
 
+  function deleteHandler() {
+    if (projectId) {
+      deleteProject(projectId);
+    }
+    if (taskId) {
+      deleteTask(taskId);
+    }
+    closeModal();
+  }
+
   return (
     <div>
       <FaTrashAlt onClick={openModal} />
@@ -42,18 +59,20 @@ export default function DeleteModal({ showConfirm, deleteProject, docId }) {
         contentLabel="Example Modal"
       >
         <div className="flex justify-between mb-4">
-          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Delete Project?</h2>
+          <h2
+            className="capitalize"
+            ref={(_subtitle) => (subtitle = _subtitle)}
+          >
+            Delete {title}?
+          </h2>
           <button onClick={closeModal}>X</button>
         </div>
         <div>
-          <p>Are you sure you want to delete the project?</p>
+          <p>Are you sure you want to delete the {title}?</p>
           <div className="flex items-center space-x-4 mt-4">
             <button
               className="bg-maroon text-white px-3 w-20 py-1 mt-2"
-              onClick={() => {
-                deleteProject(docId);
-                setIsOpen(false);
-              }}
+              onClick={deleteHandler}
             >
               Yes
             </button>

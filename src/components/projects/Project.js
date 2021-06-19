@@ -33,7 +33,8 @@ export default function Project({ project }) {
         <DeleteModal
           showConfirm={showConfirm}
           deleteProject={deleteProject}
-          docId={project.docId}
+          projectId={project.docId}
+          title={"project"}
         />
       </span>
     </>

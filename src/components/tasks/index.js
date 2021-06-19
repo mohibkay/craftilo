@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { FaTrashAlt } from "react-icons/fa";
 import { firebase } from "../../lib/firebase";
 import { useTasks } from "../../hooks";
 import Checkbox from "./Checkbox";
@@ -8,6 +7,7 @@ import { getTitle, getCollatedTitle, collatedTasksExist } from "../../helpers";
 import { useSelectedProjectValue } from "../../context";
 import { useProjectsValue } from "../../context";
 import AddTask from "./AddTask";
+import DeleteModal from "../projects/DeleteModal";
 
 export default function Tasks() {
   const { selectedProject } = useSelectedProjectValue();
@@ -52,9 +52,10 @@ export default function Tasks() {
               <Checkbox id={task.docId} />
               <span>{task.task}</span>
             </span>
-            <FaTrashAlt
-              className="cursor-pointer"
-              onClick={() => deleteTask(task.docId)}
+            <DeleteModal
+              title="task"
+              deleteTask={deleteTask}
+              taskId={task.docId}
             />
           </li>
         ))}
