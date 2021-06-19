@@ -4,7 +4,6 @@ import { firebase } from "../../lib/firebase";
 import { useSelectedProjectValue } from "../../context";
 import { format, add } from "date-fns";
 import { v4 as uuidv4 } from "uuid";
-import QuickTaskModal from "./QuickTaskModal";
 import { ProjectOverlay } from "./ProjectOverlay";
 import TaskDate from "./TaskDate";
 // import ProjectOverlay from "./ProjectOverlay";
@@ -14,7 +13,7 @@ export default function AddTask({
   showAddTaskMain = true,
   shouldShowMain = false,
   showQuickAddTask,
-  setShowQuickAddTask,
+  setShowQuickAddTask = () => {},
 }) {
   const [task, setTask] = useState("");
   const [taskDate, setTaskDate] = useState("");

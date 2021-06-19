@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useProjectsValue } from "../../context";
+// import { useProjectsValue } from "../../context";
 import { useSelectedProjectValue } from "../../context";
 import { firebase } from "../../lib/firebase";
 import DeleteModal from "./DeleteModal";
 
 export default function Project({ project }) {
   const [showConfirm, setShowConfirm] = useState(false);
-  const { projects, setProjects } = useProjectsValue();
+  // const { projects, setProjects } = useProjectsValue();
   const { setSelectedProject } = useSelectedProjectValue();
 
   const deleteProject = (docId) => {
@@ -16,7 +16,7 @@ export default function Project({ project }) {
       .doc(docId)
       .delete()
       .then(() => {
-        setProjects([...projects]);
+        // setProjects([...projects]);
         setSelectedProject("INBOX");
       });
   };

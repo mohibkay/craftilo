@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import { FaTrashAlt } from "react-icons/fa";
+import { firebase } from "../../lib/firebase";
 import { useTasks } from "../../hooks";
 import Checkbox from "./Checkbox";
 import { collatedTasks } from "../../constants";
@@ -30,17 +32,28 @@ export default function Tasks() {
     document.title = `${projectName}: Todoist`;
   }, [projectName]);
 
+  const deleteTask = (taskId) => {
+    const item = firebase.firestore().collection("tasks").doc(taskId).delete();
+    console.log(item);
+  };
+
   return (
     <div className="px-0 md:px-10 pt-10 border-r border-gray-light col-span-4 md:col-span-3 h-screen bg-white">
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul className="">
         {tasks.map((task) => (
           <li
-            className="flex items-center space-x-3 text-lg cursor-pointer border-b border-gray-primary m-2 px-2 py-1 pb-2"
+            className="flex justify-between items-center text-lg cursor-pointer border-b border-gray-primary m-2 px-2 py-1 pb-2"
             key={task.docId}
           >
-            <Checkbox id={task.docId} />
-            <span>{task.task}</span>
+            <span className="flex items-center space-x-3">
+              <Checkbox id={task.docId} />
+              <span>{task.task}</span>
+            </span>
+            <FaTrashAlt
+              className="cursor-pointer"
+              onClick={() => deleteTask(task.docId)}
+            />
           </li>
         ))}
       </ul>
