@@ -35,10 +35,13 @@ export const useTasks = (selectedProject) => {
       setTasks(
         selectedProject === "NEXT_7"
           ? newTasks.filter((task) => {
-              const [diff] = formatDistanceToNowStrict(
-                new Date(task.date)
-              ).split(" ", 1);
-              return diff <= 7 && task.archived !== true;
+              if (task.date) {
+                console.log(task.date);
+                const [diff] = formatDistanceToNowStrict(
+                  new Date(task.date)
+                ).split(" ", 1);
+                return diff <= 7 && task.archived !== true;
+              }
             })
           : newTasks.filter((task) => task.archived !== true)
       );
