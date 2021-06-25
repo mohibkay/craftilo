@@ -1,4 +1,5 @@
 import { format, add } from "date-fns";
+import { useCallback, useEffect } from "react";
 import { FaSpaceShuttle, FaSun, FaRegPaperPlane } from "react-icons/fa";
 
 export default function TaskDate({
@@ -7,6 +8,22 @@ export default function TaskDate({
   setShowTaskDate,
   showQuickAddTask,
 }) {
+  const handleKeydown = useCallback(
+    (event) => {
+      if (event.key === "Escape") {
+        setShowTaskDate(false);
+      }
+    },
+    [setShowTaskDate]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeydown);
+    return () => {
+      document.removeEventListener("keydown", handleKeydown);
+    };
+  }, [handleKeydown]);
+
   return (
     <>
       {showTaskDate && (

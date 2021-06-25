@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import Modal from "react-modal";
 
@@ -10,6 +10,7 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    zIndex: "1000",
   },
 };
 
@@ -30,6 +31,22 @@ export default function QuickTaskModal({ showConfirm, deleteProject, docId }) {
   function closeModal() {
     setIsOpen(false);
   }
+
+  const handleKeydown = useCallback(
+    (event) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    },
+    [setIsOpen]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeydown);
+    return () => {
+      document.removeEventListener("keydown", handleKeydown);
+    };
+  }, [handleKeydown]);
 
   return (
     <div>

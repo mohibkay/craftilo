@@ -1,3 +1,4 @@
+import { useCallback, useEffect } from "react";
 import { useProjectsValue } from "../../context";
 
 export const ProjectOverlay = ({
@@ -7,6 +8,22 @@ export const ProjectOverlay = ({
   showQuickAddTask,
 }) => {
   const { projects } = useProjectsValue();
+
+  const handleKeydown = useCallback(
+    (event) => {
+      if (event.key === "Escape") {
+        setShowProjectOverlay(false);
+      }
+    },
+    [setShowProjectOverlay]
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeydown);
+    return () => {
+      document.removeEventListener("keydown", handleKeydown);
+    };
+  }, [handleKeydown]);
 
   return (
     projects &&

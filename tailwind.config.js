@@ -1,9 +1,8 @@
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false,
   theme: {
     colors: {
-      // primary: "#f28482",
       primary: "#2ec4b6",
       white: "#ffffff",
       gray: {
