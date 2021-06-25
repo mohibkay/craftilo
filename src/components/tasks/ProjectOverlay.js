@@ -12,7 +12,7 @@ export const ProjectOverlay = ({
     projects &&
     showProjectOverlay && (
       <div
-        className={`absolute  -right-4 border border-gray-primary bg-white shadow-md ${
+        className={`absolute -right-4 rounded-md border border-gray-primary bg-white shadow-md ${
           showQuickAddTask ? "w-1/2 top-28" : "w-1/3 top-24"
         }`}
       >

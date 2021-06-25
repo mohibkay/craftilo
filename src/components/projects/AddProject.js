@@ -33,7 +33,7 @@ export default function AddProject({ shouldShow = false }) {
         onClick={() => setShow((show) => !show)}
         className="flex items-baseline px-2 my-2 pb-1.5 space-x-3 cursor-pointer hover:bg-gray-light"
       >
-        <span className="text-maroon font-bold text-2xl">+</span>
+        <span className="text-primary font-bold text-2xl">+</span>
         <span className="">Add Project</span>
       </div>
 
@@ -49,14 +49,14 @@ export default function AddProject({ shouldShow = false }) {
           <div className="flex items-center space-x-4">
             <button
               type="button"
-              className="bg-maroon text-white px-2.5 py-1 mt-2"
+              className="bg-primary rounded text-white px-2.5 py-1 mt-2"
               onClick={addProject}
             >
               Add Project
             </button>
             <button
               type="button"
-              className="bg-gray-light px-3 py-1 mt-2"
+              className="bg-gray-light rounded px-3 py-1 mt-2"
               onClick={() => setShow(false)}
             >
               Cancel

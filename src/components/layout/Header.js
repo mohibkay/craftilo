@@ -7,7 +7,7 @@ export default function Header({ darkMode, setDarkMode }) {
   const [showQuickAddTask, setShowQuickAddTask] = useState(false);
 
   return (
-    <header className={`${darkMode ? "bg-black" : "bg-maroon"} sticky w-full`}>
+    <header className={`${darkMode ? "bg-black" : "bg-primary"} sticky w-full`}>
       <nav className="flex justify-between items-center text-white py-2 px-4 md:px-0 text-xl max-w-screen-lg mx-auto">
         <div className="">
           <h2 className="cursor-pointer">craftilo</h2>

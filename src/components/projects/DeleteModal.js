@@ -74,13 +74,13 @@ export default function DeleteModal({
           <p>Are you sure you want to delete the {title}?</p>
           <div className="flex items-center space-x-4 mt-4">
             <button
-              className="bg-maroon text-white px-3 w-20 py-1 mt-2"
+              className="bg-primary rounded text-white px-3 w-20 py-1 mt-2"
               onClick={deleteHandler}
             >
               Yes
             </button>
             <button
-              className="bg-gray-primary px-3 w-20 py-1 mt-2"
+              className="bg-gray-primary rounded px-3 w-20 py-1 mt-2"
               onClick={() => setIsOpen(false)}
             >
               Cancel

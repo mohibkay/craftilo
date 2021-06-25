@@ -69,7 +69,7 @@ export default function AddTask({
             onClick={() => setShowMain((showMain) => !showMain)}
             className="flex items-baseline space-x-3 cursor-pointer"
           >
-            <span className="text-2xl text-maroon">+</span>
+            <span className="text-2xl text-primary">+</span>
             <span className="">Add Task</span>
           </div>
         </div>
@@ -120,7 +120,7 @@ export default function AddTask({
           <div className="flex items-center justify-between px-4">
             <span className="items-center space-x-4">
               <button
-                className="bg-maroon text-white px-2.5 py-1 mt-2"
+                className="bg-primary rounded text-white px-2.5 py-1 mt-2"
                 onClick={() => {
                   addTask();
                   setShowTaskDate(false);
@@ -133,7 +133,7 @@ export default function AddTask({
 
               {!showQuickAddTask && (
                 <button
-                  className="bg-gray-light px-3 py-1 mt-2"
+                  className="bg-gray-light rounded px-3 py-1 mt-2"
                   onClick={() => {
                     setShowMain(false);
                     setShowProjectOverlay(false);
