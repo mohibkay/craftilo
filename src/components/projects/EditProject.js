@@ -8,19 +8,18 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    width: "25%",
   },
 };
 
 Modal.setAppElement("*");
 
-export default function DeleteModal({
+export default function EditModal({
   modalStatus,
   setModalStatus,
-  deleteProject = () => {},
-  projectId = "",
-  title = "",
-  deleteTask = () => {},
-  taskId = "",
+  projectName,
+  setProjectName,
+  handleUpdate,
 }) {
   let subtitle;
 
@@ -32,15 +31,10 @@ export default function DeleteModal({
     setModalStatus(false);
   }
 
-  function deleteHandler() {
-    if (projectId) {
-      deleteProject(projectId);
-    }
-    if (taskId) {
-      deleteTask(taskId);
-    }
+  const handleEditProject = () => {
+    handleUpdate();
     closeModal();
-  }
+  };
 
   return (
     <div className="group">
@@ -56,22 +50,29 @@ export default function DeleteModal({
             className="capitalize"
             ref={(_subtitle) => (subtitle = _subtitle)}
           >
-            Delete {title}?
+            Edit Project Title
           </h2>
           <button onClick={closeModal}>X</button>
         </div>
         <div>
-          <p>Are you sure you want to delete the {title}?</p>
+          <input
+            type="text"
+            value={projectName}
+            onChange={({ target }) => setProjectName(target.value)}
+            className="w-full px-2 py-1.5 rounded my-2 border border-gray-primary bg-white focus:outline-none"
+            placeholder="Name your project"
+          />
+
           <div className="flex items-center space-x-4 mt-4">
             <button
               className="bg-primary rounded text-white px-3 w-20 py-1 mt-2"
-              onClick={deleteHandler}
+              onClick={handleEditProject}
             >
               Yes
             </button>
             <button
               className="bg-gray-primary rounded px-3 w-20 py-1 mt-2"
-              onClick={() => setModalStatus(false)}
+              onClick={closeModal}
             >
               Cancel
             </button>

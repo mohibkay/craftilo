@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { firebase } from "../../lib/firebase";
 import { useTasks } from "../../hooks";
 import Checkbox from "./Checkbox";
@@ -8,11 +8,13 @@ import { useSelectedProjectValue } from "../../context";
 import { useProjectsValue } from "../../context";
 import AddTask from "./AddTask";
 import DeleteModal from "../projects/DeleteModal";
+import MenuList from "../projects/Menu";
 
 export default function Tasks() {
   const { selectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
   const { tasks } = useTasks(selectedProject);
+  const [modalStatus, setModalStatus] = useState(false);
 
   let projectName = "";
 
@@ -52,10 +54,17 @@ export default function Tasks() {
               <Checkbox id={task.docId} />
               <span>{task.task}</span>
             </span>
+
+            <span className="ml-auto">
+              <MenuList setModalStatus={setModalStatus} />
+            </span>
+
             <DeleteModal
               title="task"
               deleteTask={deleteTask}
               taskId={task.docId}
+              modalStatus={modalStatus}
+              setModalStatus={setModalStatus}
             />
           </li>
         ))}
