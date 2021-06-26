@@ -19,24 +19,13 @@ export const ProjectOverlay = ({
     [setShowProjectOverlay]
   );
 
-  const handleClick = useCallback(
-    (e) => {
-      // if (showProjectOverlay === 5) {
-      //   setShowProjectOverlay(false);
-      // }
-    },
-    [setShowProjectOverlay, showProjectOverlay]
-  );
-
   useEffect(() => {
-    document.addEventListener("click", handleClick);
     document.addEventListener("keydown", handleKeydown);
 
     return () => {
       document.removeEventListener("keydown", handleKeydown);
-      document.addEventListener("click", handleClick);
     };
-  }, [handleClick, handleKeydown]);
+  }, [handleKeydown]);
 
   return (
     projects &&
