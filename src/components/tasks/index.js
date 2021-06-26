@@ -15,6 +15,7 @@ export default function Tasks() {
   const { projects } = useProjectsValue();
   const { tasks } = useTasks(selectedProject);
   const [modalStatus, setModalStatus] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
 
   let projectName = "";
 
@@ -56,7 +57,10 @@ export default function Tasks() {
             </span>
 
             <span className="ml-auto">
-              <MenuList setModalStatus={setModalStatus} />
+              <MenuList
+                setModalStatus={setModalStatus}
+                setShowEditModal={setShowEditModal}
+              />
             </span>
 
             <DeleteModal
