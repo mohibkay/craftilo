@@ -4,7 +4,7 @@ import AddTask from "../tasks/AddTask";
 
 export default function Header({ darkMode, setDarkMode }) {
   const [shouldShowMain, setShouldShowMain] = useState(false);
-  const [showQuickAddTask, setShowQuickAddTask] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   return (
     <header className={`${darkMode ? "bg-black" : "bg-primary"} sticky w-full`}>
@@ -17,8 +17,7 @@ export default function Header({ darkMode, setDarkMode }) {
             <li
               className="text-3xl cursor-pointer"
               onClick={() => {
-                setShowQuickAddTask((showQuickAddTask) => !showQuickAddTask);
-                setShouldShowMain(true);
+                setOpenModal(true);
               }}
             >
               +
@@ -36,8 +35,9 @@ export default function Header({ darkMode, setDarkMode }) {
       <AddTask
         showAddTaskMain={false}
         shouldShowMain={shouldShowMain}
-        showQuickAddTask={showQuickAddTask}
-        setShowQuickAddTask={setShowQuickAddTask}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        setShouldShowMain={setShouldShowMain}
       />
     </header>
   );

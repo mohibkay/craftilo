@@ -5,7 +5,6 @@ export const ProjectOverlay = ({
   setProject,
   showProjectOverlay,
   setShowProjectOverlay,
-  showQuickAddTask,
   anchorRef,
 }) => {
   const { projects } = useProjectsValue();
@@ -32,9 +31,7 @@ export const ProjectOverlay = ({
     showProjectOverlay && (
       <div
         ref={anchorRef}
-        className={`absolute -right-4 rounded-md border border-gray-primary bg-white shadow-md ${
-          showQuickAddTask ? "w-1/2 top-28" : "w-1/3 top-24"
-        }`}
+        className="absolute -right-4 rounded-md border border-gray-primary bg-white shadow-md w-1/3 top-24"
       >
         <ul className="">
           {projects.map((project) => (

@@ -7,17 +7,17 @@ import { v4 as uuidv4 } from "uuid";
 import { ProjectOverlay } from "./ProjectOverlay";
 import TaskDate from "./TaskDate";
 import useOnClickOutside from "use-onclickoutside";
+import QuickTaskModal from "./QuickTaskModal";
 
 export default function AddTask({
   showAddTaskMain = true,
-  shouldShowMain = false,
-  showQuickAddTask,
-  setShowQuickAddTask = () => {},
+  openModal,
+  setOpenModal,
 }) {
   const [task, setTask] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [project, setProject] = useState("");
-  const [showMain, setShowMain] = useState(shouldShowMain);
+  const [showMain, setShowMain] = useState(false);
   const [showProjectOverlay, setShowProjectOverlay] = useState(false);
   const [showTaskDate, setShowTaskDate] = useState(false);
 
@@ -66,14 +66,9 @@ export default function AddTask({
   };
 
   return (
-    <div
-      className={`${
-        showQuickAddTask &&
-        "absolute left-1/2 top-72 p-2 pr-8 py-4 border border-gray-primary bg-white shadow-md w-1/4"
-      }`}
-    >
+    <div ref={anchorRef}>
       {showAddTaskMain && (
-        <div className="mx-4 mb-4">
+        <div ref={anchorRef} className="mx-4 mb-4">
           <div
             onClick={() => setShowMain((showMain) => !showMain)}
             className="flex items-baseline space-x-3 cursor-pointer"
@@ -84,39 +79,21 @@ export default function AddTask({
         </div>
       )}
 
-      {(showMain || showQuickAddTask) && (
-        <div className="relative">
-          {showQuickAddTask && (
-            <>
-              <div className="flex justify-between items-baseline">
-                <h2 className="ml-4 font-medium mb-2">Quick Add Task</h2>
-                <span
-                  className="cursor-pointer"
-                  onClick={() => {
-                    setShowMain(false);
-                    setShowProjectOverlay(false);
-                    setShowQuickAddTask(false);
-                  }}
-                >
-                  X
-                </span>
-              </div>
-            </>
-          )}
+      {showMain && (
+        <div ref={anchorRef} className="relative">
           <ProjectOverlay
             setProject={setProject}
             showProjectOverlay={showProjectOverlay}
             setShowProjectOverlay={setShowProjectOverlay}
             setShowTaskDate={setShowTaskDate}
-            showQuickAddTask={showQuickAddTask}
             anchorRef={anchorRef}
           />
+
           <TaskDate
             setTaskDate={setTaskDate}
             showTaskDate={showTaskDate}
             setShowProjectOverlay={setShowProjectOverlay}
             setShowTaskDate={setShowTaskDate}
-            showQuickAddTask={showQuickAddTask}
             anchorRef={anchorRef}
           />
 
@@ -136,25 +113,23 @@ export default function AddTask({
                   addTask();
                   setShowTaskDate(false);
                   setShowProjectOverlay(false);
-                  setShowQuickAddTask(false);
                 }}
               >
                 Add Task
               </button>
 
-              {!showQuickAddTask && (
-                <button
-                  className="bg-gray-light rounded px-3 py-1 mt-2"
-                  onClick={() => {
-                    setShowMain(false);
-                    setShowProjectOverlay(false);
-                    setShowTaskDate(false);
-                  }}
-                >
-                  Cancel
-                </button>
-              )}
+              <button
+                className="bg-gray-light rounded px-3 py-1 mt-2"
+                onClick={() => {
+                  setShowMain(false);
+                  setShowProjectOverlay(false);
+                  setShowTaskDate(false);
+                }}
+              >
+                Cancel
+              </button>
             </span>
+
             <span className="flex items-baseline space-x-4">
               <span
                 ref={anchorRef}
@@ -181,6 +156,14 @@ export default function AddTask({
           </div>
         </div>
       )}
+
+      <QuickTaskModal
+        task={task}
+        setTask={setTask}
+        addTask={addTask}
+        modalStatus={openModal}
+        setModalStatus={setOpenModal}
+      />
     </div>
   );
 }

@@ -1,7 +1,3 @@
-//TODO: refactor quick task modal and use it
-
-import { useCallback, useEffect, useState } from "react";
-import { FaTrashAlt } from "react-icons/fa";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -12,74 +8,74 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
+    width: "25%",
   },
 };
 
 Modal.setAppElement("*");
 
-export default function QuickTaskModal({ showConfirm, deleteProject, docId }) {
+export default function QuickTaskModal({
+  setModalStatus,
+  modalStatus,
+  task,
+  setTask,
+  addTask,
+}) {
   let subtitle;
-  const [modalIsOpen, setIsOpen] = useState(showConfirm);
-
-  function openModal() {
-    setIsOpen(true);
-  }
 
   function afterOpenModal() {
     subtitle.style.color = "#f00";
   }
 
   function closeModal() {
-    setIsOpen(false);
+    setModalStatus(false);
   }
 
-  // const handleKeydown = useCallback(
-  //   (event) => {
-  //     if (event.key === "Escape") {
-  //       setIsOpen(false);
-  //     }
-  //   },
-  //   [setIsOpen]
-  // );
-
-  // useEffect(() => {
-  //   document.addEventListener("keydown", handleKeydown);
-  //   return () => {
-  //     document.removeEventListener("keydown", handleKeydown);
-  //   };
-  // }, [handleKeydown]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (task) {
+      addTask();
+      closeModal();
+    }
+  };
 
   return (
     <div>
-      <FaTrashAlt onClick={openModal} />
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={modalStatus}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        className="z-50"
       >
         <div className="flex justify-between mb-4">
-          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Delete Project?</h2>
+          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Quick Task</h2>
           <button onClick={closeModal}>X</button>
         </div>
-        <div>
-          <p>Are you sure you want to delete the project?</p>
-          <div className="flex items-center space-x-4 mt-4">
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Add Quick Task"
+            className="w-full border border-gray-primary mx-0 px-2 py-1 rounded my-2"
+            value={task}
+            onChange={({ target }) => setTask(target.value)}
+          />
+
+          <div className="mt-4 space-x-4">
             <button
-              className="bg-primary text-white px-3 w-20 py-1 mt-2"
-              onClick={() => deleteProject(docId)}
+              type="submit"
+              disabled={!task}
+              className="bg-primary rounded text-white px-2.5 py-1 mt-2"
             >
-              Yes
+              Add Task
             </button>
             <button
-              className="bg-gray-primary px-3 w-20 py-1 mt-2"
-              onClick={() => setIsOpen(false)}
+              onClick={closeModal}
+              className="bg-gray-light rounded px-3 py-1 mt-2"
             >
               Cancel
             </button>
           </div>
-        </div>
+        </form>
       </Modal>
     </div>
   );
