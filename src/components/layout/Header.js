@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaPizzaSlice } from "react-icons/fa";
-import AddTask from "../tasks/AddTask";
+import AddTask from "../task/AddTask";
 
 export default function Header({ darkMode, setDarkMode }) {
   const [shouldShowMain, setShouldShowMain] = useState(false);

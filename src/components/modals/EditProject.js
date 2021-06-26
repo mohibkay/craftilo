@@ -14,11 +14,11 @@ const customStyles = {
 
 Modal.setAppElement("*");
 
-export default function EditTask({
+export default function EditModal({
   modalStatus,
   setModalStatus,
-  taskName,
-  setTaskName,
+  projectName,
+  setProjectName,
   handleUpdate,
 }) {
   let subtitle;
@@ -32,8 +32,10 @@ export default function EditTask({
   }
 
   const handleEditProject = () => {
-    handleUpdate();
-    closeModal();
+    if (projectName) {
+      handleUpdate();
+      closeModal();
+    }
   };
 
   return (
@@ -50,15 +52,15 @@ export default function EditTask({
             className="capitalize"
             ref={(_subtitle) => (subtitle = _subtitle)}
           >
-            Edit Task
+            Edit Project Title
           </h2>
           <button onClick={closeModal}>X</button>
         </div>
         <div>
           <input
             type="text"
-            value={taskName}
-            onChange={({ target }) => setTaskName(target.value)}
+            value={projectName}
+            onChange={({ target }) => setProjectName(target.value)}
             className="w-full px-2 py-1.5 rounded my-2 border border-gray-primary bg-white focus:outline-none"
             placeholder="Name your project"
           />

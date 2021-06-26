@@ -2,9 +2,9 @@ import { useState } from "react";
 import { firebase } from "../../lib/firebase";
 
 import Checkbox from "./Checkbox";
-import DeleteModal from "../projects/DeleteModal";
-import MenuList from "../projects/Menu";
-import EditTask from "./EditTask";
+import DeleteModal from "../modals/DeleteModal";
+import MenuList from "../modals/Menu";
+import EditTask from "../modals/EditTask";
 
 export default function Task({ task }) {
   const [modalStatus, setModalStatus] = useState(false);

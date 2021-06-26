@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useProjectsValue } from "../../context";
 import { useSelectedProjectValue } from "../../context";
 import { firebase } from "../../lib/firebase";
-import DeleteModal from "./DeleteModal";
-import EditModal from "./EditProject";
-import MenuList from "./Menu";
+import DeleteModal from "../modals/DeleteModal";
+import EditModal from "../modals/EditProject";
+import MenuList from "../modals/Menu";
 
 export default function Project({ project }) {
   const [showConfirm, setShowConfirm] = useState(false);

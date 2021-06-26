@@ -6,8 +6,8 @@ import {
   FaRegCalendar,
 } from "react-icons/fa";
 import { useSelectedProjectValue } from "../../context";
-import Projects from "../projects";
-import AddProject from "../projects/AddProject";
+import Projects from "../project";
+import AddProject from "../project/AddProject";
 
 export default function Sidebar() {
   const { setSelectedProject } = useSelectedProjectValue();

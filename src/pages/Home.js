@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Header from "../components/layout/Header";
 import Sidebar from "../components/layout/Sidebar";
-import Tasks from "../components/tasks";
+import Tasks from "../components/task";
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);

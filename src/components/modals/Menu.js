@@ -20,8 +20,23 @@ export default function MenuList({ setModalStatus, setShowEditModal }) {
         </svg>
       }
     >
-      <MenuItem onClick={() => setShowEditModal(true)}>Edit</MenuItem>
-      <MenuItem onClick={() => setModalStatus(true)}>Delete</MenuItem>
+      <MenuItem
+        onClick={() => {
+          setShowEditModal(true);
+          return false;
+        }}
+      >
+        Edit
+      </MenuItem>
+      <MenuItem
+        onClick={(e) => {
+          setModalStatus(true);
+          e.keepOpen = false;
+          return false;
+        }}
+      >
+        Delete
+      </MenuItem>
     </Menu>
   );
 }
