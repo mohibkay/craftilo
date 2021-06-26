@@ -68,7 +68,7 @@ export default function EditModal({
               className="bg-primary rounded text-white px-3 w-20 py-1 mt-2"
               onClick={handleEditProject}
             >
-              Yes
+              Update
             </button>
             <button
               className="bg-gray-primary rounded px-3 w-20 py-1 mt-2"

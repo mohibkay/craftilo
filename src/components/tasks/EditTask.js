@@ -17,8 +17,8 @@ Modal.setAppElement("*");
 export default function EditTask({
   modalStatus,
   setModalStatus,
-  projectName,
-  setProjectName,
+  taskName,
+  setTaskName,
   handleUpdate,
 }) {
   let subtitle;
@@ -50,15 +50,15 @@ export default function EditTask({
             className="capitalize"
             ref={(_subtitle) => (subtitle = _subtitle)}
           >
-            Edit Project Title
+            Edit Task
           </h2>
           <button onClick={closeModal}>X</button>
         </div>
         <div>
           <input
             type="text"
-            value={projectName}
-            onChange={({ target }) => setProjectName(target.value)}
+            value={taskName}
+            onChange={({ target }) => setTaskName(target.value)}
             className="w-full px-2 py-1.5 rounded my-2 border border-gray-primary bg-white focus:outline-none"
             placeholder="Name your project"
           />
@@ -68,7 +68,7 @@ export default function EditTask({
               className="bg-primary rounded text-white px-3 w-20 py-1 mt-2"
               onClick={handleEditProject}
             >
-              Yes
+              Update
             </button>
             <button
               className="bg-gray-primary rounded px-3 w-20 py-1 mt-2"

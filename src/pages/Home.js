@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "../components/layout/Header";
 import Sidebar from "../components/layout/Sidebar";
 import Tasks from "../components/tasks";
 
 export default function Home() {
   const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    document.title = `Home - Craftilo`;
+  }, []);
 
   return (
     <>
