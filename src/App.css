@@ -1,0 +1,12 @@
+.ReactModal__Overlay {
+  background-color: rgba(102, 102, 102, 0.5) !important;
+  backdrop-filter: blur(5px);
+}
+
+.ReactModal__Overlay--after-open {
+  z-index: 100 !important;
+}
+
+.ReactModal__Body--open {
+  overflow-y: hidden;
+}
