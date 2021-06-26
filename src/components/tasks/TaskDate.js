@@ -7,6 +7,7 @@ export default function TaskDate({
   showTaskDate,
   setShowTaskDate,
   showQuickAddTask,
+  anchorRef,
 }) {
   const handleKeydown = useCallback(
     (event) => {
@@ -28,6 +29,7 @@ export default function TaskDate({
     <>
       {showTaskDate && (
         <div
+          ref={anchorRef}
           className={`absolute -right-4 border border-gray-primary bg-white shadow-md ${
             showQuickAddTask ? "w-1/2 top-28" : "w-1/3 top-24"
           }`}

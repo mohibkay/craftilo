@@ -6,6 +6,7 @@ export const ProjectOverlay = ({
   showProjectOverlay,
   setShowProjectOverlay,
   showQuickAddTask,
+  anchorRef,
 }) => {
   const { projects } = useProjectsValue();
 
@@ -18,17 +19,30 @@ export const ProjectOverlay = ({
     [setShowProjectOverlay]
   );
 
+  const handleClick = useCallback(
+    (e) => {
+      // if (showProjectOverlay === 5) {
+      //   setShowProjectOverlay(false);
+      // }
+    },
+    [setShowProjectOverlay, showProjectOverlay]
+  );
+
   useEffect(() => {
+    document.addEventListener("click", handleClick);
     document.addEventListener("keydown", handleKeydown);
+
     return () => {
       document.removeEventListener("keydown", handleKeydown);
+      document.addEventListener("click", handleClick);
     };
-  }, [handleKeydown]);
+  }, [handleClick, handleKeydown]);
 
   return (
     projects &&
     showProjectOverlay && (
       <div
+        ref={anchorRef}
         className={`absolute -right-4 rounded-md border border-gray-primary bg-white shadow-md ${
           showQuickAddTask ? "w-1/2 top-28" : "w-1/3 top-24"
         }`}

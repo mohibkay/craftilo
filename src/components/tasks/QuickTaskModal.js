@@ -1,3 +1,5 @@
+//TODO: refactor quick task modal and use it
+
 import { useCallback, useEffect, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import Modal from "react-modal";
@@ -10,7 +12,6 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    zIndex: "1000",
   },
 };
 
@@ -32,21 +33,21 @@ export default function QuickTaskModal({ showConfirm, deleteProject, docId }) {
     setIsOpen(false);
   }
 
-  const handleKeydown = useCallback(
-    (event) => {
-      if (event.key === "Escape") {
-        setIsOpen(false);
-      }
-    },
-    [setIsOpen]
-  );
+  // const handleKeydown = useCallback(
+  //   (event) => {
+  //     if (event.key === "Escape") {
+  //       setIsOpen(false);
+  //     }
+  //   },
+  //   [setIsOpen]
+  // );
 
-  useEffect(() => {
-    document.addEventListener("keydown", handleKeydown);
-    return () => {
-      document.removeEventListener("keydown", handleKeydown);
-    };
-  }, [handleKeydown]);
+  // useEffect(() => {
+  //   document.addEventListener("keydown", handleKeydown);
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeydown);
+  //   };
+  // }, [handleKeydown]);
 
   return (
     <div>
@@ -56,7 +57,7 @@ export default function QuickTaskModal({ showConfirm, deleteProject, docId }) {
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
-        contentLabel="Example Modal"
+        className="z-50"
       >
         <div className="flex justify-between mb-4">
           <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Delete Project?</h2>

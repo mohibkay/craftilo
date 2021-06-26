@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FaRegListAlt, FaRegCalendarAlt } from "react-icons/fa";
 import { firebase } from "../../lib/firebase";
 import { useSelectedProjectValue } from "../../context";
@@ -6,6 +6,7 @@ import { format, add } from "date-fns";
 import { v4 as uuidv4 } from "uuid";
 import { ProjectOverlay } from "./ProjectOverlay";
 import TaskDate from "./TaskDate";
+import useOnClickOutside from "use-onclickoutside";
 
 export default function AddTask({
   showAddTaskMain = true,
@@ -19,6 +20,14 @@ export default function AddTask({
   const [showMain, setShowMain] = useState(shouldShowMain);
   const [showProjectOverlay, setShowProjectOverlay] = useState(false);
   const [showTaskDate, setShowTaskDate] = useState(false);
+
+  const closeOverlay = () => {
+    setShowProjectOverlay(false);
+    setShowTaskDate(false);
+  };
+
+  const anchorRef = useRef(null);
+  useOnClickOutside(anchorRef, closeOverlay);
 
   const { selectedProject } = useSelectedProjectValue();
 
@@ -100,6 +109,7 @@ export default function AddTask({
             setShowProjectOverlay={setShowProjectOverlay}
             setShowTaskDate={setShowTaskDate}
             showQuickAddTask={showQuickAddTask}
+            anchorRef={anchorRef}
           />
           <TaskDate
             setTaskDate={setTaskDate}
@@ -107,6 +117,7 @@ export default function AddTask({
             setShowProjectOverlay={setShowProjectOverlay}
             setShowTaskDate={setShowTaskDate}
             showQuickAddTask={showQuickAddTask}
+            anchorRef={anchorRef}
           />
 
           <input
@@ -146,6 +157,7 @@ export default function AddTask({
             </span>
             <span className="flex items-baseline space-x-4">
               <span
+                ref={anchorRef}
                 className="cursor-pointer"
                 onClick={() => {
                   setShowProjectOverlay(
