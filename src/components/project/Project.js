@@ -43,7 +43,7 @@ export default function Project({ project }) {
     <>
       <span className="mr-3">●</span>
       <span className="sidebar__project-name">{project.name}</span>
-      <span className="ml-auto">
+      <span className="ml-auto" onClick={(e) => e.stopPropagation()}>
         <MenuList
           setModalStatus={setShowConfirm}
           setShowEditModal={setShowEditModal}
