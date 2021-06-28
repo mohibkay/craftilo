@@ -40,7 +40,7 @@ export default function TaskDate({
               }}
             >
               <span>
-                <FaSpaceShuttle />
+                <FaSpaceShuttle className="text-primary" />
               </span>
               <span>Today</span>
             </li>
@@ -54,7 +54,7 @@ export default function TaskDate({
               }}
             >
               <span>
-                <FaSun />
+                <FaSun className="text-primary" />
               </span>
               <span>Tomorrow</span>
             </li>
@@ -68,7 +68,7 @@ export default function TaskDate({
               }}
             >
               <span>
-                <FaRegPaperPlane />
+                <FaRegPaperPlane className="text-primary" />
               </span>
               <span>Next Week</span>
             </li>

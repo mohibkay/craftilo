@@ -55,7 +55,7 @@ export default function QuickTaskModal({
           <input
             type="text"
             placeholder="Add Quick Task"
-            className="w-full border border-gray-primary mx-0 px-2 py-1 rounded my-2"
+            className="w-full border border-gray-primary mx-0 px-2 py-1 rounded my-2 focus:outline-none"
             value={task}
             onChange={({ target }) => setTask(target.value)}
           />

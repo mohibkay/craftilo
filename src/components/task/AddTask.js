@@ -85,7 +85,10 @@ export default function AddTask({
       )}
 
       {showMain && (
-        <div ref={anchorRef} className="relative">
+        <div
+          ref={anchorRef}
+          className="relative border p-4 pl-1 pr-8 rounded-lg shadow-md border-gray-primary"
+        >
           <ProjectOverlay
             setProject={setProject}
             showProjectOverlay={showProjectOverlay}
@@ -105,7 +108,7 @@ export default function AddTask({
           <input
             type="text"
             placeholder="New Task"
-            className="w-full border border-gray-primary mx-4 px-2 py-0.5 my-2"
+            className="w-full border rounded border-gray-primary mx-4 px-2 py-0.5 my-2 focus:outline-none"
             value={task}
             onChange={({ target }) => setTask(target.value)}
           />
@@ -146,7 +149,7 @@ export default function AddTask({
                   setShowTaskDate(false);
                 }}
               >
-                <FaRegListAlt />
+                <FaRegListAlt className="text-primary" />
               </span>
               <span
                 className="cursor-pointer"
@@ -155,7 +158,7 @@ export default function AddTask({
                   setShowProjectOverlay(false);
                 }}
               >
-                <FaRegCalendarAlt />
+                <FaRegCalendarAlt className="text-primary" />
               </span>
             </span>
           </div>
