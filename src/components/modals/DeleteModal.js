@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { FaTrashAlt } from "react-icons/fa";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -16,7 +14,8 @@ const customStyles = {
 Modal.setAppElement("*");
 
 export default function DeleteModal({
-  showConfirm,
+  modalStatus,
+  setModalStatus,
   deleteProject = () => {},
   projectId = "",
   title = "",
@@ -24,18 +23,13 @@ export default function DeleteModal({
   taskId = "",
 }) {
   let subtitle;
-  const [modalIsOpen, setIsOpen] = useState(showConfirm);
-
-  function openModal() {
-    setIsOpen(true);
-  }
 
   function afterOpenModal() {
     subtitle.style.color = "#f00";
   }
 
   function closeModal() {
-    setIsOpen(false);
+    setModalStatus(false);
   }
 
   function deleteHandler() {
@@ -50,12 +44,8 @@ export default function DeleteModal({
 
   return (
     <div className="group">
-      <FaTrashAlt
-        className="cursor-pointer hidden group-hover:block opacity-50 hover:opacity-100"
-        onClick={openModal}
-      />
       <Modal
-        isOpen={modalIsOpen}
+        isOpen={modalStatus}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         style={customStyles}
@@ -81,7 +71,7 @@ export default function DeleteModal({
             </button>
             <button
               className="bg-gray-primary rounded px-3 w-20 py-1 mt-2"
-              onClick={() => setIsOpen(false)}
+              onClick={() => setModalStatus(false)}
             >
               Cancel
             </button>

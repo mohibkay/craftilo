@@ -21,10 +21,6 @@ export default function Projects({ activeValue = null }) {
               setActive(project.projectId);
               setSelectedProject(project.projectId);
             }}
-            onKeyDown={() => {
-              setActive(project.projectId);
-              setSelectedProject(project.projectId);
-            }}
           >
             <Project project={project} />
           </li>
