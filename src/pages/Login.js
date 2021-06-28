@@ -3,38 +3,32 @@ import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { ROUTES } from "../constants";
 
-export default function SignUp() {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const isInvalid = email === "" || password === "" || confirmPassword === "";
-  const { signUp } = useAuth();
+  const isInvalid = email === "" || password === "";
+  const { signIn } = useAuth();
   const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (password !== confirmPassword) {
-      setError("Passwords do not match");
-      return;
-    }
-
     try {
       setError("");
       setLoading(true);
-      await signUp(email, password);
+      await signIn(email, password);
       history.push(ROUTES.DASHBOARD);
     } catch (error) {
-      setError("Failed to create account");
+      setError("Failed to log in");
     }
     setLoading(false);
   };
 
   useEffect(() => {
-    document.title = "Sign Up - Craftilo";
+    document.title = "Login - Craftilo";
   }, []);
 
   return (
@@ -47,7 +41,7 @@ export default function SignUp() {
               <h1 className="text-2xl">Craftilo</h1>
             </header>
 
-            <h2 className="text-xl font-semibold">Sign Up</h2>
+            <h2 className="text-xl font-semibold">Login</h2>
 
             {error && <p className="mt-3 text-md text-red-primary">{error}</p>}
 
@@ -74,30 +68,20 @@ export default function SignUp() {
                 type="password"
               />
 
-              <label className="mt-3" htmlFor="confirm-password">
-                Confirm Password
-              </label>
-              <input
-                value={confirmPassword}
-                onChange={({ target }) => setConfirmPassword(target.value)}
-                className="p-1 px-2 mt-1.5 border border-gray-primary rounded focus:outline-none"
-                id="confirm-password"
-                type="password"
-              />
               <button
                 disabled={isInvalid}
                 type="submit"
                 className={`bg-primary rounded text-white px-2.5 py-1 mt-4 focus:outline-none`}
               >
-                {loading ? "Signing Up..." : " Sign Up"}
+                {loading ? "Logging In..." : "Login"}
               </button>
             </section>
           </form>
           <hr className="mt-4 border-gray-primary" />
           <p className="text-center mt-2">
-            Already signed up?{" "}
-            <Link to={ROUTES.LOGIN} className="text-primary font-semibold">
-              Log In
+            Don't have an account yet?{" "}
+            <Link to={ROUTES.SIGN_UP} className="text-primary font-semibold">
+              Sign Up
             </Link>
           </p>
         </div>
