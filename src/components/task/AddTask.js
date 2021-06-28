@@ -87,7 +87,7 @@ export default function AddTask({
       {showMain && (
         <div
           ref={anchorRef}
-          className="relative border p-4 pl-1 pr-8 rounded-lg shadow-md border-gray-primary"
+          className="relative border p-4 pl-1 pr-8 mb-8 rounded-lg shadow-md border-gray-primary"
         >
           <ProjectOverlay
             setProject={setProject}
