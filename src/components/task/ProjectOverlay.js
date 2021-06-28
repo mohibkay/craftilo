@@ -34,21 +34,27 @@ export const ProjectOverlay = ({
         className="absolute -right-4 rounded-md border border-gray-primary bg-white shadow-md w-1/3 top-24"
       >
         <ul className="">
-          {projects.map((project) => (
-            <li
-              className="p-2 px-4 border-b border-gray-primary hover:bg-gray-light font-normal hover:font-bold cursor-pointer"
-              key={project.projectId}
-            >
-              <div
-                onClick={() => {
-                  setProject(project.projectId);
-                  setShowProjectOverlay(false);
-                }}
+          {projects.length > 0 ? (
+            projects.map((project) => (
+              <li
+                className="p-2 px-4 border-b border-gray-primary hover:bg-gray-light font-normal hover:font-bold cursor-pointer"
+                key={project.projectId}
               >
-                {project.name}
-              </div>
+                <div
+                  onClick={() => {
+                    setProject(project.projectId);
+                    setShowProjectOverlay(false);
+                  }}
+                >
+                  {project.name}
+                </div>
+              </li>
+            ))
+          ) : (
+            <li className="p-2 px-4 border-b border-gray-primary hover:bg-gray-light font-normal hover:font-bold cursor-pointer">
+              No projects yet
             </li>
-          ))}
+          )}
         </ul>
       </div>
     )
