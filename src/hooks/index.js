@@ -3,16 +3,21 @@ import { firebase } from "../lib/firebase";
 import { collatedTasksExist } from "../helpers";
 import { format, formatDistanceToNowStrict, isFuture } from "date-fns";
 import { isEqual } from "lodash/lang";
+import { useAuth } from "../context/authContext";
 
 export const useTasks = (selectedProject) => {
   const [tasks, setTasks] = useState([]);
   const [archivedTasks, setArchivedTasks] = useState([]);
 
+  const {
+    currentUser: { uid: userId },
+  } = useAuth();
+
   useEffect(() => {
     let unsubscribe = firebase
       .firestore()
       .collection("tasks")
-      .where("userId", "==", "Xlff7deIcRUcMOCnb8pLEg8QkTU2");
+      .where("userId", "==", userId);
 
     unsubscribe =
       selectedProject && !collatedTasksExist(selectedProject)
@@ -52,19 +57,22 @@ export const useTasks = (selectedProject) => {
     });
 
     return () => unsubscribe();
-  }, [selectedProject]);
+  }, [selectedProject, userId]);
 
   return { tasks, archivedTasks };
 };
 
 export const useProjects = () => {
   const [projects, setProjects] = useState([]);
+  const {
+    currentUser: { uid: userId },
+  } = useAuth();
 
   useEffect(() => {
     firebase
       .firestore()
       .collection("projects")
-      .where("userId", "==", "Xlff7deIcRUcMOCnb8pLEg8QkTU2")
+      .where("userId", "==", userId)
       .orderBy("projectId")
       .get()
       .then((snapshot) => {
@@ -77,7 +85,7 @@ export const useProjects = () => {
           setProjects(allProjects);
         }
       });
-  }, [projects]);
+  }, [projects, userId]);
 
   return { projects, setProjects };
 };

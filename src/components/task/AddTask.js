@@ -8,6 +8,7 @@ import { ProjectOverlay } from "./ProjectOverlay";
 import TaskDate from "./TaskDate";
 import useOnClickOutside from "use-onclickoutside";
 import QuickTaskModal from "./QuickTaskModal";
+import { useAuth } from "../../context/authContext";
 
 export default function AddTask({
   showAddTaskMain = true,
@@ -20,6 +21,10 @@ export default function AddTask({
   const [showMain, setShowMain] = useState(false);
   const [showProjectOverlay, setShowProjectOverlay] = useState(false);
   const [showTaskDate, setShowTaskDate] = useState(false);
+
+  const {
+    currentUser: { uid: userId },
+  } = useAuth();
 
   const closeOverlay = () => {
     setShowProjectOverlay(false);
@@ -54,7 +59,7 @@ export default function AddTask({
           task,
           taskId,
           date: collatedDate || taskDate,
-          userId: "Xlff7deIcRUcMOCnb8pLEg8QkTU2",
+          userId,
         })
         .then(() => {
           setTask("");

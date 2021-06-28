@@ -12,12 +12,12 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const listener = auth.onAuthStateChanged((user) => {
+    return auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setLoading(false);
     });
 
-    return () => listener();
+    // return () => listener();
   }, []);
 
   const signUp = (email, password) => {
