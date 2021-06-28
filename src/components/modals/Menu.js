@@ -7,8 +7,6 @@ export default function MenuList({ setModalStatus, setShowEditModal }) {
   return (
     <Menu
       className="border border-gray-primary"
-      border
-      border-gray-primary
       menuButton={
         <svg
           onClick={handleClick}
