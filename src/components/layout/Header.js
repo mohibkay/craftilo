@@ -13,7 +13,7 @@ export default function Header({ darkMode, setDarkMode }) {
   const { signOut } = useAuth();
 
   const handleSignOut = async () => {
-    await signOut;
+    await signOut();
     history.push(ROUTES.LOGIN);
   };
 

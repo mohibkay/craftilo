@@ -22,6 +22,8 @@ export default function Login() {
       await signIn(email, password);
       history.push(ROUTES.DASHBOARD);
     } catch (error) {
+      setEmail("");
+      setPassword("");
       setError("Failed to log in");
     }
     setLoading(false);
