@@ -2,6 +2,15 @@ import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../context/authContext";
 import { ROUTES } from "../constants";
+import { css } from "@emotion/react";
+import PropagateLoader from "react-spinners/PropagateLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  border-color: #2ec4b6;
+`;
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
@@ -10,9 +19,11 @@ export default function SignUp() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const isInvalid = email === "" || password === "" || confirmPassword === "";
+  const isInvalid =
+    email === "" || password === "" || confirmPassword === "" || loading;
   const { signUp } = useAuth();
   const history = useHistory();
+  const color = "#2ec4b6";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -87,9 +98,19 @@ export default function SignUp() {
               <button
                 disabled={isInvalid}
                 type="submit"
-                className={`bg-primary rounded text-white px-2.5 py-1 mt-4 focus:outline-none`}
+                className={`bg-primary h-8 rounded text-white px-2.5 py-1 mt-4 focus:outline-none ${
+                  isInvalid && "cursor-not-allowed"
+                } ${loading && "bg-white border border-primary"}`}
               >
-                {loading ? "Signing Up..." : " Sign Up"}
+                {loading ? (
+                  <PropagateLoader
+                    loading={loading}
+                    color={color}
+                    css={override}
+                  />
+                ) : (
+                  "Sign Up"
+                )}
               </button>
             </section>
           </form>

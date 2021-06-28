@@ -1,5 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../lib/firebase";
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
+
+const override = css`
+  display: flex;
+  justify-contents: center;
+  align-items: center;
+  margin: auto auto;
+  margin-top: 20%;
+  border-color: #2ec4b6;
+`;
 
 const AuthContext = createContext();
 
@@ -10,6 +21,8 @@ export function useAuth() {
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  const color = "#2ec4b6";
 
   useEffect(() => {
     return auth.onAuthStateChanged((user) => {
@@ -38,8 +51,8 @@ export function AuthProvider({ children }) {
     signOut,
   };
   return (
-    <AuthContext.Provider value={value}>
-      {loading ? "Loading..." : children}
+    <AuthContext.Provider value={value} className="h-screen">
+      {loading ? <HashLoader color={color} css={override} /> : children}
     </AuthContext.Provider>
   );
 }
