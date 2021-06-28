@@ -3,11 +3,11 @@ import Header from "../components/layout/Header";
 import Sidebar from "../components/layout/Sidebar";
 import Tasks from "../components/task";
 
-export default function Home() {
+export default function Dashboard() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    document.title = `Home - Craftilo`;
+    document.title = `Dashboard - Craftilo`;
   }, []);
 
   return (

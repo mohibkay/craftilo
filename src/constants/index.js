@@ -3,3 +3,11 @@ export const collatedTasks = [
   { key: "TODAY", name: "Today" },
   { key: "NEXT_7", name: "Next 7 Days" },
 ];
+
+export const ROUTES = {
+  DASHBOARD: "/",
+  LOGIN: "/login",
+  SIGN_UP: "/sign-up",
+  PROFILE: "/p/:username",
+  NOT_FOUND: "/not-found",
+};

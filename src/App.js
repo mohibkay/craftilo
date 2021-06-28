@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ProjectsProvider, SelectedProjectProvider } from "./context";
-import Home from "./pages/Home";
+import { ROUTES } from "./constants";
+import Dashboard from "./pages/Dashboard";
 import "./App.css";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -9,7 +11,8 @@ function App() {
       <ProjectsProvider>
         <Router>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path={ROUTES.DASHBOARD} component={Dashboard} />
+            <Route path={ROUTES.SIGN_UP} component={SignUp} />
           </Switch>
         </Router>
       </ProjectsProvider>
