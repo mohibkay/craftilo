@@ -24,9 +24,8 @@ export default function AddTask({
   const [showProjectOverlay, setShowProjectOverlay] = useState(false);
   const [showTaskDate, setShowTaskDate] = useState(false);
 
-  const {
-    currentUser: { uid: userId },
-  } = useAuth();
+  const { currentUser } = useAuth();
+  const userId = currentUser?.uid;
 
   const closeOverlay = () => {
     setShowProjectOverlay(false);
@@ -119,7 +118,7 @@ export default function AddTask({
           <div className="flex items-center justify-between px-4">
             <span className="items-center space-x-4">
               <button
-                className="bg-primary rounded text-white px-2.5 py-1 mt-2 focus:outline-none"
+                className="button"
                 onClick={() => {
                   addTask();
                   setShowTaskDate(false);

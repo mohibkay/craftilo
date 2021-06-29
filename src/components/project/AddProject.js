@@ -53,11 +53,7 @@ export default function AddProject({ shouldShow = false }) {
             placeholder="Name your project"
           />
           <div className="flex items-center space-x-4">
-            <button
-              type="button"
-              className="bg-primary rounded text-white px-2.5 py-1 mt-2 focus:outline-none"
-              onClick={addProject}
-            >
+            <button type="button" className="button" onClick={addProject}>
               Add Project
             </button>
             <button
