@@ -42,7 +42,11 @@ export default function Tasks() {
         {tasks?.length > 0 ? (
           tasks?.map((task) => <Task key={task.docId} task={task} />)
         ) : tasks ? (
-          <li>No tasks yet</li>
+          <div className="px-4 mt-4">
+            <li className="pb-2 mb-2 border-b border-gray-primary">
+              No tasks yet
+            </li>
+          </div>
         ) : (
           <div className="px-4 my-3">
             <Skeleton count={5} height={35} className="mb-2" />

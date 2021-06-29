@@ -27,7 +27,9 @@ export default function Projects({ activeValue = null }) {
           </li>
         ))
       ) : projects ? (
-        <li>No projects yet</li>
+        <div className="px-4 mt-2">
+          <li>No projects yet</li>
+        </div>
       ) : (
         <Skeleton count={3} height={31} className="mb-2.5" />
       )}
