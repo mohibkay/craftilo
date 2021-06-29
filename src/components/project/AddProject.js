@@ -3,6 +3,8 @@ import { firebase } from "../../lib/firebase";
 import { generatePushId } from "../../helpers";
 import { useProjectsValue } from "../../context";
 import { useAuth } from "../../context/authContext";
+import { msg } from "../../constants";
+import { toast } from "../utils/Toast";
 
 export default function AddProject({ shouldShow = false }) {
   const [show, setShow] = useState(shouldShow);
@@ -28,6 +30,7 @@ export default function AddProject({ shouldShow = false }) {
           setProjects([...projects]);
           setProjectName("");
           setShow(false);
+          toast("Project", msg.add);
         });
   };
 
@@ -40,7 +43,6 @@ export default function AddProject({ shouldShow = false }) {
         <span className="text-primary font-bold text-2xl">+</span>
         <span className="">Add Project</span>
       </div>
-
       {show && (
         <div className="px-3 p-4 rounded-lg shadow-md border border-gray-primary">
           <input

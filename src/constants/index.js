@@ -10,3 +10,9 @@ export const ROUTES = {
   SIGN_UP: "/sign-up",
   NOT_FOUND: "/not-found",
 };
+
+export const msg = {
+  add: "added successfully",
+  update: "updated successfully",
+  delete: "deleted successfully",
+};

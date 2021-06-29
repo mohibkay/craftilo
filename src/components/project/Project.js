@@ -5,6 +5,8 @@ import { firebase } from "../../lib/firebase";
 import DeleteModal from "../modals/DeleteModal";
 import EditModal from "../modals/EditProject";
 import MenuList from "../modals/Menu";
+import { msg } from "../../constants";
+import { toast } from "../utils/Toast";
 
 export default function Project({ project }) {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -23,6 +25,7 @@ export default function Project({ project }) {
       .then(() => {
         setProjects([...projects]);
         setSelectedProject("INBOX");
+        toast("Project", msg.delete);
       });
   };
 
@@ -36,6 +39,7 @@ export default function Project({ project }) {
       })
       .then(() => {
         setProjects([...projects]);
+        toast("Project", msg.update);
       });
   };
 

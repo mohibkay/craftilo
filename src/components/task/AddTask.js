@@ -9,6 +9,8 @@ import TaskDate from "./TaskDate";
 import useOnClickOutside from "use-onclickoutside";
 import QuickTaskModal from "./QuickTaskModal";
 import { useAuth } from "../../context/authContext";
+import { msg } from "../../constants";
+import { toast } from "../utils/Toast";
 
 export default function AddTask({
   showAddTaskMain = true,
@@ -66,6 +68,7 @@ export default function AddTask({
           setProject("");
           setShowMain(false);
           setShowProjectOverlay(false);
+          toast("Task", msg.add);
         })
     );
   };

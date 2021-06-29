@@ -1,3 +1,9 @@
+:root {
+  --primary-color: #2ec4b6;
+  --off-white: #f3f4f6;
+  --dark-gray: #6b7280;
+}
+
 .ReactModal__Overlay {
   background-color: rgba(102, 102, 102, 0.5) !important;
   backdrop-filter: blur(5px);
