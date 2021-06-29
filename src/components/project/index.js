@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useProjectsValue } from "../../context";
 import { useSelectedProjectValue } from "../../context";
 import Project from "./Project";
+import Skeleton from "react-loading-skeleton";
 
 export default function Projects({ activeValue = null }) {
   const [active, setActive] = useState(activeValue);
@@ -10,7 +11,7 @@ export default function Projects({ activeValue = null }) {
 
   return (
     <>
-      {projects &&
+      {projects?.length > 0 ? (
         projects.map((project) => (
           <li
             key={project.projectId}
@@ -24,7 +25,12 @@ export default function Projects({ activeValue = null }) {
           >
             <Project project={project} />
           </li>
-        ))}
+        ))
+      ) : projects ? (
+        <li>No projects yet</li>
+      ) : (
+        <Skeleton count={3} height={31} className="mb-2.5" />
+      )}
     </>
   );
 }
