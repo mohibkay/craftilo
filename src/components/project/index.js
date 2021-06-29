@@ -12,7 +12,7 @@ export default function Projects({ activeValue = null }) {
   return (
     <>
       {projects?.length > 0 ? (
-        projects.map((project) => (
+        projects.map((project, index) => (
           <li
             key={project.projectId}
             className={`flex group items-center px-3 py-2.5 cursor-pointer hover:bg-gray-light ${
@@ -23,7 +23,7 @@ export default function Projects({ activeValue = null }) {
               setSelectedProject(project.projectId);
             }}
           >
-            <Project project={project} />
+            <Project project={project} index={index} />
           </li>
         ))
       ) : projects ? (

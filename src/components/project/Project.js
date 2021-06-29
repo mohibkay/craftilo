@@ -8,7 +8,7 @@ import MenuList from "../utils/Menu";
 import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
 
-export default function Project({ project }) {
+export default function Project({ project, index }) {
   const [showConfirm, setShowConfirm] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [projectName, setProjectName] = useState(project.name);
@@ -45,7 +45,7 @@ export default function Project({ project }) {
 
   return (
     <>
-      <span className="mr-3">●</span>
+      <span className={`mr-3 sidebar-dot-${index}`}>●</span>
       <span className="sidebar__project-name">{project.name}</span>
       <span className="ml-auto" onClick={(e) => e.stopPropagation()}>
         <MenuList
