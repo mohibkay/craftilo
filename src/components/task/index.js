@@ -34,7 +34,7 @@ export default function Tasks() {
   return (
     <div
       style={{ height: "calc(100vh - 52px" }}
-      className="px-0 md:px-10 pt-10 border-r border-gray-light col-span-4 md:col-span-3 bg-white"
+      className="px-0 md:px-10 pt-10 border-r border-gray-light col-span-4 md:col-span-3 overflow-y-auto bg-white"
     >
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul className="">

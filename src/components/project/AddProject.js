@@ -2,6 +2,7 @@ import { useState } from "react";
 import { firebase } from "../../lib/firebase";
 import { generatePushId } from "../../helpers";
 import { useProjectsValue } from "../../context";
+import { useAuth } from "../../context/authContext";
 
 export default function AddProject({ shouldShow = false }) {
   const [show, setShow] = useState(shouldShow);
@@ -9,6 +10,9 @@ export default function AddProject({ shouldShow = false }) {
 
   const projectId = generatePushId();
   const { projects, setProjects } = useProjectsValue();
+  const {
+    currentUser: { uid: userId },
+  } = useAuth();
 
   const addProject = () => {
     projectName &&
@@ -18,7 +22,7 @@ export default function AddProject({ shouldShow = false }) {
         .add({
           projectId,
           name: projectName,
-          userId: "Xlff7deIcRUcMOCnb8pLEg8QkTU2",
+          userId,
         })
         .then(() => {
           setProjects([...projects]);
@@ -38,12 +42,12 @@ export default function AddProject({ shouldShow = false }) {
       </div>
 
       {show && (
-        <div className="px-3">
+        <div className="px-3 p-4 rounded-lg shadow-md border border-gray-primary">
           <input
             type="text"
             value={projectName}
             onChange={({ target }) => setProjectName(target.value)}
-            className="px-2 py-1 my-2 border border-gray-primary bg-white focus:outline-none"
+            className="px-2 py-1 my-2 w-full rounded border border-gray-primary bg-white focus:outline-none"
             placeholder="Name your project"
           />
           <div className="flex items-center space-x-4">

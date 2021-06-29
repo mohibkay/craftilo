@@ -15,7 +15,10 @@ export default function Sidebar() {
   const [showProjects, setShowProjects] = useState(true);
 
   return (
-    <div className="hidden md:block col-span-1 border-r border-gray-light mt-10">
+    <div
+      className="hidden md:block col-span-1 border-r border-gray-light pt-10 overflow-y-auto"
+      style={{ height: "calc(100vh - 54px" }}
+    >
       <ul className="">
         <li
           className={`flex items-center space-x-3 py-2 px-3 cursor-pointer hover:bg-gray-light hover:font-bold ${
