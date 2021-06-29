@@ -58,7 +58,7 @@ export default function AddProject({ shouldShow = false }) {
             </button>
             <button
               type="button"
-              className="bg-gray-light rounded px-3 py-1 mt-2 focus:outline-none"
+              className="button-secondary"
               onClick={() => setShow(false)}
             >
               Cancel

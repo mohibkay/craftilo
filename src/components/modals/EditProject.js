@@ -66,16 +66,10 @@ export default function EditModal({
           />
 
           <div className="flex items-center space-x-4 mt-4">
-            <button
-              className="bg-primary rounded text-white px-3 w-20 py-1 mt-2"
-              onClick={handleEditProject}
-            >
+            <button className="button w-20 mt-2" onClick={handleEditProject}>
               Update
             </button>
-            <button
-              className="bg-gray-primary rounded px-3 w-20 py-1 mt-2"
-              onClick={closeModal}
-            >
+            <button className="button-secondary w-20" onClick={closeModal}>
               Cancel
             </button>
           </div>

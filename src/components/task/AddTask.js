@@ -129,7 +129,7 @@ export default function AddTask({
               </button>
 
               <button
-                className="bg-gray-light rounded px-3 py-1 mt-2 focus:outline-none"
+                className="button-secondary"
                 onClick={() => {
                   setShowMain(false);
                   setShowProjectOverlay(false);
