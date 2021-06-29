@@ -40,10 +40,10 @@ export default function Header({ darkMode, setDarkMode }) {
               <FaPizzaSlice size="20" className="cursor-pointer" />
             </li>
           </ul>
-          <button onClick={handleSignOut}>
+          <button className="focus:outline-none" onClick={handleSignOut}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="w-7"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
