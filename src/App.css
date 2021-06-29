@@ -17,34 +17,41 @@
   overflow-y: hidden;
 }
 
+/*Menu Item  */
+.rc-menu__item--active {
+  color: white !important;
+  background-color: var(--primary-color) !important;
+}
+
 /* Project folder dot color */
+
 .sidebar-dot-0 {
-  color: #ffc6ff;
-}
-.sidebar-dot-1 {
-  color: #4895ef;
-}
-.sidebar-dot-2 {
-  color: #fad003;
-}
-.sidebar-dot-3 {
-  color: #ff8d85;
-}
-.sidebar-dot-4 {
-  color: #ff9932;
-}
-.sidebar-dot-5 {
-  color: #af38eb;
-}
-.sidebar-dot-6 {
   color: #2ec4b6;
 }
-.sidebar-dot-7 {
+.sidebar-dot-1 {
   color: #3a86ff;
 }
-.sidebar-dot-8 {
+.sidebar-dot-2 {
   color: #ef476f;
 }
-.sidebar-dot-9 {
+.sidebar-dot-3 {
   color: #99d98c;
+}
+.sidebar-dot-4 {
+  color: #bc6c25;
+}
+.sidebar-dot-6 {
+  color: #4895ef;
+}
+.sidebar-dot-7 {
+  color: #fad003;
+}
+.sidebar-dot-8 {
+  color: #ff8d85;
+}
+.sidebar-dot-9 {
+  color: #006d77;
+}
+.sidebar-dot-10 {
+  color: #af38eb;
 }

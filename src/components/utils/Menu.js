@@ -26,6 +26,7 @@ export default function MenuList({ setModalStatus, setShowEditModal, type }) {
     >
       <MenuItem
         className="border-b border-gray-primary"
+        styles={{ active: "bg-primary" }}
         onClick={() => setShowEditModal(true)}
       >
         <svg
