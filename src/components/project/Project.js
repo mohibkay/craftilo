@@ -4,7 +4,7 @@ import { useSelectedProjectValue } from "../../context";
 import { firebase } from "../../lib/firebase";
 import DeleteModal from "../modals/DeleteModal";
 import EditModal from "../modals/EditProject";
-import MenuList from "../modals/Menu";
+import MenuList from "../utils/Menu";
 import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
 
@@ -51,6 +51,7 @@ export default function Project({ project }) {
         <MenuList
           setModalStatus={setShowConfirm}
           setShowEditModal={setShowEditModal}
+          type={100}
         />
 
         <DeleteModal

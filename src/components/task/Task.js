@@ -3,7 +3,7 @@ import { firebase } from "../../lib/firebase";
 
 import Checkbox from "./Checkbox";
 import DeleteModal from "../modals/DeleteModal";
-import MenuList from "../modals/Menu";
+import MenuList from "../utils/Menu";
 import EditTask from "../modals/EditTask";
 
 import { msg } from "../../constants";
