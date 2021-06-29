@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useProjectsValue } from "../../context";
 import { useSelectedProjectValue } from "../../context";
 import Project from "./Project";
+import Skeleton from "react-loading-skeleton";
 
 export default function Projects({ activeValue = null }) {
   const [active, setActive] = useState(activeValue);
@@ -10,8 +11,8 @@ export default function Projects({ activeValue = null }) {
 
   return (
     <>
-      {projects &&
-        projects.map((project) => (
+      {projects?.length > 0 ? (
+        projects.map((project, index) => (
           <li
             key={project.projectId}
             className={`flex group items-center px-3 py-2.5 cursor-pointer hover:bg-gray-light ${
@@ -22,9 +23,16 @@ export default function Projects({ activeValue = null }) {
               setSelectedProject(project.projectId);
             }}
           >
-            <Project project={project} />
+            <Project project={project} index={index} />
           </li>
-        ))}
+        ))
+      ) : projects ? (
+        <div className="px-4 mt-2">
+          <li>No projects yet</li>
+        </div>
+      ) : (
+        <Skeleton count={3} height={31} className="mb-2.5" />
+      )}
     </>
   );
 }

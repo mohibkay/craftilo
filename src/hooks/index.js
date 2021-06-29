@@ -6,8 +6,8 @@ import { isEqual } from "lodash/lang";
 import { useAuth } from "../context/authContext";
 
 export const useTasks = (selectedProject) => {
-  const [tasks, setTasks] = useState([]);
-  const [archivedTasks, setArchivedTasks] = useState([]);
+  const [tasks, setTasks] = useState(null);
+  const [archivedTasks, setArchivedTasks] = useState(null);
 
   const {
     currentUser: { uid: userId },
@@ -63,7 +63,7 @@ export const useTasks = (selectedProject) => {
 };
 
 export const useProjects = () => {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState(null);
   const { currentUser } = useAuth();
   const userId = currentUser?.uid;
 

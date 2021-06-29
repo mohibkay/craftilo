@@ -3,8 +3,11 @@ import { firebase } from "../../lib/firebase";
 
 import Checkbox from "./Checkbox";
 import DeleteModal from "../modals/DeleteModal";
-import MenuList from "../modals/Menu";
+import MenuList from "../utils/Menu";
 import EditTask from "../modals/EditTask";
+
+import { msg } from "../../constants";
+import { toast } from "../utils/Toast";
 
 export default function Task({ task }) {
   const [modalStatus, setModalStatus] = useState(false);
@@ -12,7 +15,12 @@ export default function Task({ task }) {
   const [taskName, setTaskName] = useState(task.task);
 
   const deleteTask = (taskId) => {
-    firebase.firestore().collection("tasks").doc(taskId).delete();
+    firebase
+      .firestore()
+      .collection("tasks")
+      .doc(taskId)
+      .delete()
+      .then(() => toast("Task", msg.delete));
   };
 
   const updateTaskName = () => {
@@ -24,7 +32,7 @@ export default function Task({ task }) {
         task: taskName,
       })
       .then(() => {
-        console.log("done");
+        toast("Task", msg.update);
       });
   };
 

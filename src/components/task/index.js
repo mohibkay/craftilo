@@ -7,6 +7,7 @@ import { useSelectedProjectValue } from "../../context";
 import { useProjectsValue } from "../../context";
 import Task from "./Task";
 import AddTask from "./AddTask";
+import Skeleton from "react-loading-skeleton";
 
 export default function Tasks() {
   const { selectedProject } = useSelectedProjectValue();
@@ -16,7 +17,7 @@ export default function Tasks() {
   let projectName = "";
 
   if (
-    projects.length > 0 &&
+    projects?.length > 0 &&
     selectedProject &&
     !collatedTasksExist(selectedProject)
   ) {
@@ -38,9 +39,19 @@ export default function Tasks() {
     >
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul className="">
-        {tasks.map((task) => (
-          <Task key={task.docId} task={task} />
-        ))}
+        {tasks?.length > 0 ? (
+          tasks?.map((task) => <Task key={task.docId} task={task} />)
+        ) : tasks ? (
+          <div className="px-4 mt-4">
+            <li className="pb-2 mb-2 border-b border-gray-primary">
+              No tasks yet
+            </li>
+          </div>
+        ) : (
+          <div className="px-4 my-3">
+            <Skeleton count={5} height={35} className="mb-2" />
+          </div>
+        )}
       </ul>
 
       <AddTask />

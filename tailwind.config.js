@@ -15,6 +15,7 @@ module.exports = {
       red: {
         primary: "#ed4956",
       },
+      maroon: "#db4c3f",
     },
     extend: {},
   },

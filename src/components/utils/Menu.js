@@ -1,12 +1,17 @@
 import { Menu, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 
-export default function MenuList({ setModalStatus, setShowEditModal }) {
+export default function MenuList({ setModalStatus, setShowEditModal, type }) {
   const handleClick = (e) => e.stopPropagation();
 
   return (
     <Menu
       className="border border-gray-primary"
+      align="center"
+      position="auto"
+      direction={type === 100 ? "right" : "left"}
+      arrow={true}
+      portal={true}
       menuButton={
         <svg
           onClick={handleClick}
@@ -21,6 +26,7 @@ export default function MenuList({ setModalStatus, setShowEditModal }) {
     >
       <MenuItem
         className="border-b border-gray-primary"
+        styles={{ active: "bg-primary" }}
         onClick={() => setShowEditModal(true)}
       >
         <svg
