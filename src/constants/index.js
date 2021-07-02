@@ -16,3 +16,5 @@ export const msg = {
   update: "updated successfully",
   delete: "deleted successfully",
 };
+
+export const loaderColor = "#2ec4b6";
