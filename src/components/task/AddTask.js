@@ -2,7 +2,6 @@ import { useState } from "react";
 import { firebase } from "../../lib/firebase";
 import { useSelectedProjectValue } from "../../context";
 import { format, add } from "date-fns";
-import { v4 as uuidv4 } from "uuid";
 import TaskDate from "./TaskDate";
 import QuickTaskModal from "../modals/QuickAddTask";
 import { useAuth } from "../../context/authContext";
@@ -28,7 +27,6 @@ export default function AddTask({
   const addTask = () => {
     const projectId = project || selectedProject;
     let collatedDate = "";
-    const taskId = uuidv4();
 
     if (projectId === "TODAY") {
       collatedDate = format(new Date(), "yyyy, M, dd");
@@ -46,7 +44,6 @@ export default function AddTask({
           archived: false,
           projectId,
           task,
-          taskId,
           date: collatedDate || taskDate,
           userId,
         })
