@@ -13,7 +13,7 @@ export default function Checkbox({ id }) {
       onClick={archiveTask}
       className="w-5 h-5 flex group items-center justify-center text-black border border-gray-base rounded-full cursor-pointer"
     >
-      <BsCheck size="14" className="hidden group-hover:block" />
+      <BsCheck size="14" className="hidden text-primary group-hover:block" />
     </div>
   );
 }
