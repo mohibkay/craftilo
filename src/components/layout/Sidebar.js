@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   FaChevronDown,
   FaInbox,
@@ -8,15 +8,26 @@ import {
 import { useSelectedProjectValue } from "../../context";
 import Projects from "../project";
 import AddProject from "../project/AddProject";
+// import useOnClickOutside from "use-onclickoutside";
 
-export default function Sidebar() {
+export default function Sidebar({ sidebarRef, showSidebar, setShowSidebar }) {
   const { setSelectedProject } = useSelectedProjectValue();
   const [active, setActive] = useState("inbox");
   const [showProjects, setShowProjects] = useState(true);
 
+  // const closeSidebar = () => {
+  //   setShowSidebar(false);
+  // };
+
+  // const sidebarRef = useRef(null);
+  // useOnClickOutside(sidebarRef, closeSidebar);
+
   return (
     <div
-      className="hidden md:block col-span-1 border-r border-gray-light pt-10 overflow-y-auto"
+      ref={sidebarRef}
+      className={`col-span-1 border-r transition delay-700 duration-500 ease-in-out border-gray-light pt-10 overflow-y-auto md:block ${
+        showSidebar ? "block absolute left-0 z-50 bg-white w-2/3" : "hidden"
+      } `}
       style={{ height: "calc(100vh - 54px" }}
     >
       <ul className="">

@@ -4,7 +4,13 @@ import AddTask from "../task/AddTask";
 import { ROUTES } from "../../constants";
 import { useHistory } from "react-router-dom";
 
-export default function Header({ theme, toggleTheme }) {
+export default function Header({
+  theme,
+  toggleTheme,
+  showSidebar,
+  setShowSidebar,
+  sidebarRef,
+}) {
   const [shouldShowMain, setShouldShowMain] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
@@ -16,12 +22,52 @@ export default function Header({ theme, toggleTheme }) {
     history.push(ROUTES.LOGIN);
   };
 
+  const handleShowSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
   return (
     <header
       className={`${theme ? "bg-maroon" : "bg-primary"} sticky w-full h-12`}
     >
       <nav className="flex justify-between items-center text-white py-2 px-4 md:px-0 text-xl max-w-screen-lg mx-auto">
-        <div>
+        <div className="flex space-x-3 items-center">
+          <button
+            onClick={handleShowSidebar}
+            className="md:hidden focus:outline-none"
+          >
+            {showSidebar ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 cursor-pointer"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            )}
+          </button>
           <h2 className="cursor-pointer">Craftilo</h2>
         </div>
         <div className="flex items-center space-x-3">

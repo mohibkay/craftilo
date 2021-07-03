@@ -9,12 +9,16 @@ import Task from "./Task";
 import AddTask from "./AddTask";
 import Skeleton from "react-loading-skeleton";
 
-export default function Tasks() {
+export default function Tasks({ showSidebar, setShowSidebar }) {
   const { selectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
   const { tasks } = useTasks(selectedProject);
 
   let projectName = "";
+
+  const closeSidebar = () => {
+    setShowSidebar(false);
+  };
 
   if (
     projects?.length > 0 &&
@@ -34,8 +38,11 @@ export default function Tasks() {
 
   return (
     <div
+      onClick={closeSidebar}
       style={{ height: "calc(100vh - 52px" }}
-      className="px-0 md:px-10 pt-10 border-r border-gray-light col-span-4 md:col-span-3 overflow-y-auto bg-white"
+      className={`px-0 md:px-10 pt-10 border-r border-gray-light col-span-4 md:col-span-3 overflow-y-auto  ${
+        showSidebar ? "bg-gray-primary" : "bg-white"
+      }`}
     >
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul className="">
