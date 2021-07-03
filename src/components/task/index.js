@@ -40,7 +40,7 @@ export default function Tasks({ showSidebar, setShowSidebar }) {
     <div
       onClick={closeSidebar}
       style={{ height: "calc(100vh - 52px" }}
-      className={`px-0 md:px-10 pt-10 border-r border-gray-light col-span-4 md:col-span-3 overflow-y-auto  ${
+      className={`px-4 md:px-10 pt-10 border-r border-gray-light col-span-4 md:col-span-3 overflow-y-auto  ${
         showSidebar ? "bg-gray-primary" : "bg-white"
       }`}
     >
