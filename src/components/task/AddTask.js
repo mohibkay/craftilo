@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import { ProjectOverlay } from "./ProjectOverlay";
 import TaskDate from "./TaskDate";
 import useOnClickOutside from "use-onclickoutside";
-import QuickTaskModal from "./QuickTaskModal";
+import QuickTaskModal from "../modals/QuickAddTask";
 import { useAuth } from "../../context/authContext";
 import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
