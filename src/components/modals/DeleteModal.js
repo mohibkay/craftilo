@@ -1,16 +1,5 @@
 import Modal from "react-modal";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
-
 Modal.setAppElement("*");
 
 export default function DeleteModal({
@@ -48,8 +37,8 @@ export default function DeleteModal({
         isOpen={modalStatus}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
+        className="modal"
+        contentLabel="Delete Modal"
       >
         <div className="flex justify-between mb-4">
           <h2

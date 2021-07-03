@@ -1,17 +1,5 @@
 import Modal from "react-modal";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "25%",
-  },
-};
-
 Modal.setAppElement("*");
 
 export default function EditModal({
@@ -44,8 +32,8 @@ export default function EditModal({
         isOpen={modalStatus}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
+        className="modal"
+        contentLabel="Edit Project Modal"
       >
         <div className="flex justify-between mb-4">
           <h2
