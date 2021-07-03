@@ -17,7 +17,9 @@ module.exports = {
       },
       maroon: "#db4c3f",
     },
-    extend: {},
+    extend: {
+      transitionProperty: ["left"],
+    },
   },
   variants: {
     extend: {
