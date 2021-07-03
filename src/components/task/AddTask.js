@@ -11,6 +11,7 @@ import QuickTaskModal from "../modals/QuickAddTask";
 import { useAuth } from "../../context/authContext";
 import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
+import ProjectList from "./ProjectList";
 
 export default function AddTask({
   showAddTaskMain = true,
@@ -91,13 +92,13 @@ export default function AddTask({
           ref={anchorRef}
           className="relative border p-4 pl-1 pr-8 mb-8 rounded-lg shadow-md border-gray-primary"
         >
-          <ProjectOverlay
+          {/* <ProjectOverlay
             setProject={setProject}
             showProjectOverlay={showProjectOverlay}
             setShowProjectOverlay={setShowProjectOverlay}
             setShowTaskDate={setShowTaskDate}
             anchorRef={anchorRef}
-          />
+          /> */}
 
           <TaskDate
             setTaskDate={setTaskDate}
@@ -115,7 +116,7 @@ export default function AddTask({
             onChange={({ target }) => setTask(target.value)}
           />
 
-          <div className="flex items-center justify-between px-4">
+          <div className="flex items-baseline justify-between px-4">
             <span className="items-center space-x-4">
               <button
                 className="button"
@@ -141,7 +142,7 @@ export default function AddTask({
             </span>
 
             <span className="flex items-baseline space-x-4">
-              <span
+              {/* <span
                 ref={anchorRef}
                 className="cursor-pointer"
                 onClick={() => {
@@ -152,7 +153,8 @@ export default function AddTask({
                 }}
               >
                 <FaRegListAlt className="text-primary" />
-              </span>
+              </span> */}
+              <ProjectList setProject={setProject} />
               <span
                 className="cursor-pointer"
                 onClick={() => {
