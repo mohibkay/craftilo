@@ -7,8 +7,8 @@ import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
 import AddProjectModal from "../modals/EditProject";
 
-export default function AddProject({ shouldShow = false }) {
-  const [show, setShow] = useState(shouldShow);
+export default function AddProject() {
+  const [show, setShow] = useState(false);
   const [projectName, setProjectName] = useState("");
 
   const projectId = generatePushId();

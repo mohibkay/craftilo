@@ -27,7 +27,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
       } `}
       style={{ height: "calc(100vh - 54px" }}
     >
-      <ul className="">
+      <ul>
         <li
           className={`flex items-center space-x-3 py-2 px-3 cursor-pointer hover:bg-gray-light hover:font-bold ${
             active === "inbox" && "bg-gray-light font-bold"
@@ -39,7 +39,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
           }}
         >
           <span>
-            <FaInbox />
+            <FaInbox className="text-maroon" />
           </span>
           <span>Inbox</span>
         </li>
@@ -54,7 +54,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
           }}
         >
           <span>
-            <FaRegCalendar />
+            <FaRegCalendar className="text-emarald" />
           </span>
           <span>Today</span>
         </li>
@@ -69,7 +69,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
           }}
         >
           <span>
-            <FaRegCalendarAlt />
+            <FaRegCalendarAlt className="text-purple" />
           </span>
           <span>Next 7 days</span>
         </li>
@@ -79,14 +79,27 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
         onClick={() => setShowProjects((showProjects) => !showProjects)}
       >
         <span>
-          <FaChevronDown
-            className={showProjects ? "" : "transform -rotate-90"}
-          />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={`h-5 w-5 -mr-1 text-gray-base ${
+              showProjects ? "" : "transform -rotate-90"
+            }`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
         </span>
         <h2>Projects</h2>
       </div>
       <ul>{showProjects && <Projects closeSidebar={closeSidebar} />}</ul>
-      {showProjects && <AddProject />}
+      <AddProject />
     </div>
   );
 }
