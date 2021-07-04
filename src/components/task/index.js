@@ -40,8 +40,8 @@ export default function Tasks({ showSidebar, setShowSidebar }) {
     <div
       onClick={closeSidebar}
       style={{ height: "calc(100vh - 52px" }}
-      className={`px-4 md:px-10 pt-10 border-r border-gray-light col-span-4 md:col-span-3 overflow-y-auto  ${
-        showSidebar ? "bg-gray-primary" : "bg-white"
+      className={`relative px-4 md:px-10 pt-10 bg-white border-r border-gray-light col-span-4 md:col-span-3 ${
+        showSidebar ? "overflow-y-hidden" : "overflow-y-auto"
       }`}
     >
       <h2 className="text-xl ml-4">{projectName}</h2>
@@ -60,6 +60,12 @@ export default function Tasks({ showSidebar, setShowSidebar }) {
           </div>
         )}
       </ul>
+
+      <div
+        className={`bg-black opacity-50 z-30 h-screen overflow-hidden w-full absolute top-0 right-0 ${
+          showSidebar ? "visible" : "invisible"
+        }`}
+      />
 
       <AddTask />
     </div>
