@@ -9,10 +9,16 @@ import { useSelectedProjectValue } from "../../context";
 import Projects from "../project";
 import AddProject from "../project/AddProject";
 
-export default function Sidebar({ showSidebar }) {
+export default function Sidebar({ showSidebar, setShowSidebar }) {
   const { setSelectedProject } = useSelectedProjectValue();
   const [active, setActive] = useState("inbox");
   const [showProjects, setShowProjects] = useState(true);
+
+  const closeSidebar = () => {
+    if (showSidebar) {
+      setShowSidebar(false);
+    }
+  };
 
   return (
     <div
@@ -29,6 +35,7 @@ export default function Sidebar({ showSidebar }) {
           onClick={() => {
             setActive("inbox");
             setSelectedProject("INBOX");
+            closeSidebar();
           }}
         >
           <span>
@@ -43,6 +50,7 @@ export default function Sidebar({ showSidebar }) {
           onClick={() => {
             setActive("today");
             setSelectedProject("TODAY");
+            closeSidebar();
           }}
         >
           <span>
@@ -57,6 +65,7 @@ export default function Sidebar({ showSidebar }) {
           onClick={() => {
             setActive("next_7");
             setSelectedProject("NEXT_7");
+            closeSidebar();
           }}
         >
           <span>
@@ -69,14 +78,14 @@ export default function Sidebar({ showSidebar }) {
         className="flex items-center space-x-3 py-2 px-3 cursor-pointer border-b border-gray-light pb-6"
         onClick={() => setShowProjects((showProjects) => !showProjects)}
       >
-        <span onClick={() => setShowProjects((showProjects) => !showProjects)}>
+        <span>
           <FaChevronDown
             className={showProjects ? "" : "transform -rotate-90"}
           />
         </span>
         <h2>Projects</h2>
       </div>
-      <ul className="sidebar__projects">{showProjects && <Projects />}</ul>
+      <ul>{showProjects && <Projects closeSidebar={closeSidebar} />}</ul>
       {showProjects && <AddProject />}
     </div>
   );
