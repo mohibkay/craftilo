@@ -9,11 +9,26 @@ export default function Checkbox({ id }) {
   };
 
   return (
-    <div
-      onClick={archiveTask}
-      className="w-5 h-5 flex group items-center justify-center text-black border border-gray-base rounded-full cursor-pointer"
-    >
-      <BsCheck size="14" className="hidden text-primary group-hover:block" />
+    <div className="inline-block mt-1">
+      <div
+        onClick={archiveTask}
+        className="w-5 h-5 flex group items-center justify-center text-black border border-gray-base rounded-full cursor-pointer"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6 hidden text-primary group-hover:block"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
+      </div>
     </div>
   );
 }
