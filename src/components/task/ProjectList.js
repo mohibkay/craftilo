@@ -32,6 +32,7 @@ export default function ProjectList({ setProject }) {
       {projects.length > 0 ? (
         projects.map((project) => (
           <MenuItem
+            key={project.projectId}
             className="border-b border-gray-primary last:border-0"
             styles={{ active: "bg-primary" }}
             onClick={() => setProject(project.projectId)}
