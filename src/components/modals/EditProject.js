@@ -8,6 +8,8 @@ export default function EditModal({
   projectName,
   setProjectName,
   handleUpdate,
+  addProject,
+  type,
 }) {
   let subtitle;
 
@@ -21,7 +23,11 @@ export default function EditModal({
 
   const handleEditProject = () => {
     if (projectName) {
-      handleUpdate();
+      if (type === 100) {
+        addProject();
+      } else {
+        handleUpdate();
+      }
       closeModal();
     }
   };
@@ -40,7 +46,7 @@ export default function EditModal({
             className="capitalize"
             ref={(_subtitle) => (subtitle = _subtitle)}
           >
-            Edit Project Title
+            {type === 100 ? "Add Project" : " Edit Project Title"}
           </h2>
           <button onClick={closeModal}>X</button>
         </div>
@@ -55,7 +61,7 @@ export default function EditModal({
 
           <div className="flex items-center space-x-4 mt-4">
             <button className="button w-20 mt-2" onClick={handleEditProject}>
-              Update
+              {type === 100 ? "Add" : "Update"}
             </button>
             <button className="button-secondary w-20" onClick={closeModal}>
               Cancel
