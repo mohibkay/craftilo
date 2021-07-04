@@ -1,17 +1,5 @@
 import Modal from "react-modal";
 
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "25%",
-  },
-};
-
 Modal.setAppElement("*");
 
 export default function EditModal({
@@ -20,6 +8,8 @@ export default function EditModal({
   projectName,
   setProjectName,
   handleUpdate,
+  addProject,
+  type,
 }) {
   let subtitle;
 
@@ -33,7 +23,11 @@ export default function EditModal({
 
   const handleEditProject = () => {
     if (projectName) {
-      handleUpdate();
+      if (type === 100) {
+        addProject();
+      } else {
+        handleUpdate();
+      }
       closeModal();
     }
   };
@@ -44,15 +38,15 @@ export default function EditModal({
         isOpen={modalStatus}
         onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
+        className="modal"
+        contentLabel="Edit Project Modal"
       >
         <div className="flex justify-between mb-4">
           <h2
             className="capitalize"
             ref={(_subtitle) => (subtitle = _subtitle)}
           >
-            Edit Project Title
+            {type === 100 ? "Add Project" : " Edit Project Title"}
           </h2>
           <button onClick={closeModal}>X</button>
         </div>
@@ -67,7 +61,7 @@ export default function EditModal({
 
           <div className="flex items-center space-x-4 mt-4">
             <button className="button w-20 mt-2" onClick={handleEditProject}>
-              Update
+              {type === 100 ? "Add" : "Update"}
             </button>
             <button className="button-secondary w-20" onClick={closeModal}>
               Cancel

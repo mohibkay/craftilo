@@ -8,9 +8,9 @@ import Loader from "./utils/Loader";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import ProtectedAuth from "./components/auth/ProtectedAuth";
 
-const Dashboard = lazy(() => import("./pages/Dashboard"));
-const SignUp = lazy(() => import("./pages/SignUp"));
-const Login = lazy(() => import("./pages/Login"));
+const Dashboard = lazy(() => import("./pages/dashboard"));
+const SignUp = lazy(() => import("./pages/signUp"));
+const Login = lazy(() => import("./pages/login"));
 
 function App() {
   return (

@@ -53,13 +53,17 @@ export default function SignUp() {
     <>
       <Header />
       <div
-        className="flex items-center w-screen justify-center"
+        className="flex flex-col md:flex-row space-y-8 md:space-y-0 items-center w-screen justify-center"
         style={{ height: "calc(100vh - 52px" }}
       >
-        <section className="hidden md:flex">
-          <img width="80%" src="/images/hero.svg" alt="hero" />
+        <section className="px-8 -mt-16 md:mt-0 md:flex">
+          <img
+            className="md:w-10/12"
+            src="/images/hero_sign_up.svg"
+            alt="hero"
+          />
         </section>
-        <section className="md:w-1/4">
+        <section className="w-11/12 md:w-1/4">
           <div className="w-full shadow-md rounded-md p-8 bg-white border border-gray-primary">
             <form onSubmit={handleSubmit}>
               <header className="flex items-center space-x-2 mb-2">

@@ -16,12 +16,18 @@ module.exports = {
         primary: "#ed4956",
       },
       maroon: "#db4c3f",
+      emarald: "#058527",
+      purple: "#692fc2",
+      blue: "#246fe0",
     },
-    extend: {},
+    extend: {
+      transitionProperty: ["left"],
+    },
   },
   variants: {
     extend: {
       display: ["group-hover"],
+      borderWidth: ["last"],
     },
   },
   plugins: [],

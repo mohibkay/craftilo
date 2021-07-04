@@ -4,7 +4,7 @@ import { useSelectedProjectValue } from "../../context";
 import Project from "./Project";
 import Skeleton from "react-loading-skeleton";
 
-export default function Projects({ activeValue = null }) {
+export default function Projects({ activeValue = null, closeSidebar }) {
   const [active, setActive] = useState(activeValue);
   const { setSelectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
@@ -21,6 +21,7 @@ export default function Projects({ activeValue = null }) {
             onClick={() => {
               setActive(project.projectId);
               setSelectedProject(project.projectId);
+              closeSidebar();
             }}
           >
             <Project project={project} index={index} />

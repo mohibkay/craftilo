@@ -5,9 +5,10 @@ import { useProjectsValue } from "../../context";
 import { useAuth } from "../../context/authContext";
 import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
+import AddProjectModal from "../modals/EditProject";
 
-export default function AddProject({ shouldShow = false }) {
-  const [show, setShow] = useState(shouldShow);
+export default function AddProject() {
+  const [show, setShow] = useState(false);
   const [projectName, setProjectName] = useState("");
 
   const projectId = generatePushId();
@@ -43,29 +44,15 @@ export default function AddProject({ shouldShow = false }) {
         <span className="text-primary font-bold text-2xl">+</span>
         <span className="">Add Project</span>
       </div>
-      {show && (
-        <div className="px-3 p-4 rounded-lg shadow-md border border-gray-primary">
-          <input
-            type="text"
-            value={projectName}
-            onChange={({ target }) => setProjectName(target.value)}
-            className="px-2 py-1 my-2 w-full rounded border border-gray-primary bg-white focus:outline-none"
-            placeholder="Name your project"
-          />
-          <div className="flex items-center space-x-4">
-            <button type="button" className="button" onClick={addProject}>
-              Add Project
-            </button>
-            <button
-              type="button"
-              className="button-secondary"
-              onClick={() => setShow(false)}
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
+
+      <AddProjectModal
+        type={100}
+        modalStatus={show}
+        setModalStatus={setShow}
+        addProject={addProject}
+        projectName={projectName}
+        setProjectName={setProjectName}
+      />
     </div>
   );
 }

@@ -48,13 +48,13 @@ export default function Login() {
     <>
       <Header />
       <div
-        className="flex items-center w-screen justify-center"
+        className="flex flex-col md:flex-row space-y-12 md:space-y-0 items-center md:-space-x-16 w-screen justify-center"
         style={{ height: "calc(100vh - 52px" }}
       >
-        <section className="hidden md:flex">
-          <img width="80%" src="/images/hero.svg" alt="hero" />
+        <section className="px-8 md:px-0 -mt-16 md:mt-0 flex">
+          <img className="w-full md:w-4/5" src="/images/hero.svg" alt="hero" />
         </section>
-        <main className="md:w-1/4">
+        <main className="w-11/12 md:w-1/4">
           <div className="w-full shadow-md rounded-md p-8 bg-white border border-gray-primary">
             <form onSubmit={handleSubmit}>
               <header className="flex items-center space-x-2 mb-2">

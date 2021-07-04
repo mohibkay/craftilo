@@ -5,6 +5,7 @@ import Tasks from "../components/task";
 
 export default function Dashboard() {
   const [theme, toggleTheme] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
     document.title = `Dashboard - Craftilo`;
@@ -12,10 +13,15 @@ export default function Dashboard() {
 
   return (
     <>
-      <Header theme={theme} toggleTheme={toggleTheme} />
+      <Header
+        theme={theme}
+        toggleTheme={toggleTheme}
+        setShowSidebar={setShowSidebar}
+        showSidebar={showSidebar}
+      />
       <main className="max-w-screen-lg mx-auto grid grid-cols-4">
-        <Sidebar />
-        <Tasks />
+        <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+        <Tasks showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
       </main>
     </>
   );
