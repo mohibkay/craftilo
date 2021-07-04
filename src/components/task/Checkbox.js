@@ -1,5 +1,4 @@
 import { firebase } from "../../lib/firebase";
-import { BsCheck } from "react-icons/bs";
 
 export default function Checkbox({ id }) {
   const archiveTask = () => {
