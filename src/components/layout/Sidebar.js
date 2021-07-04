@@ -9,14 +9,13 @@ import { useSelectedProjectValue } from "../../context";
 import Projects from "../project";
 import AddProject from "../project/AddProject";
 
-export default function Sidebar({ sidebarRef, showSidebar }) {
+export default function Sidebar({ showSidebar }) {
   const { setSelectedProject } = useSelectedProjectValue();
   const [active, setActive] = useState("inbox");
   const [showProjects, setShowProjects] = useState(true);
 
   return (
     <div
-      ref={sidebarRef}
       className={`pl-4 col-span-1 border-r transition-left duration-300 border-gray-light pt-10 overflow-y-auto block absolute md:static ${
         showSidebar ? "left-0 z-50 bg-white w-2/3" : "-left-full"
       } `}
