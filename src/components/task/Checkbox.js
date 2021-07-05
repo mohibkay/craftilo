@@ -1,10 +1,18 @@
 import { firebase } from "../../lib/firebase";
+import { toast } from "../utils/Toast";
 
 export default function Checkbox({ id }) {
   const archiveTask = () => {
-    firebase.firestore().collection("tasks").doc(id).update({
-      archived: true,
-    });
+    firebase
+      .firestore()
+      .collection("tasks")
+      .doc(id)
+      .update({
+        archived: true,
+      })
+      .then(() => {
+        toast("1 task completed");
+      });
   };
 
   return (
@@ -15,7 +23,7 @@ export default function Checkbox({ id }) {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 hidden text-primary group-hover:block"
+          className="h-4 w-4 hidden text-primary group-hover:block"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

@@ -1,6 +1,6 @@
 import Toastify from "toastify-js";
 
-export const toast = (resource, msg) => {
+export const toast = (resource, msg = "") => {
   const message = `${resource} ${msg}`;
   Toastify({
     text: message,
