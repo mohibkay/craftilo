@@ -29,6 +29,11 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (password.length < 6) {
+      setError("Password must be atleast 6 characters");
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
