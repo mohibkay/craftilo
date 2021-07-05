@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { firebase } from "../../lib/firebase";
+import { firebase, FieldValue } from "../../lib/firebase";
 import { useSelectedProjectValue } from "../../context";
 import { format, add } from "date-fns";
 import TaskDate from "./TaskDate";
@@ -48,6 +48,7 @@ export default function AddTask({
           task,
           date: collatedDate || taskDate,
           userId,
+          createdAt: FieldValue.serverTimestamp(),
         })
         .then(() => {
           setTask("");

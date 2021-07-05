@@ -18,6 +18,7 @@ export const useTasks = (selectedProject) => {
       .firestore()
       .collection("tasks")
       .where("userId", "==", userId);
+    // .orderBy("createdAt");
 
     unsubscribe =
       selectedProject && !collatedTasksExist(selectedProject)
