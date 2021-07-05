@@ -29,6 +29,13 @@
   background-color: var(--primary-color) !important;
 }
 
+.checkbox .checkmark {
+  display: none;
+}
+.checkbox:hover .checkmark {
+  display: block;
+}
+
 /* Project folder dot color */
 
 .sidebar-dot-0 {
