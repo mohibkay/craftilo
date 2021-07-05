@@ -45,7 +45,7 @@ export default function Tasks({ showSidebar, setShowSidebar }) {
       }`}
     >
       <h2 className="text-xl ml-4">{projectName}</h2>
-      <ul className="">
+      <ul>
         {tasks?.length > 0 ? (
           tasks?.map((task) => <Task key={task.docId} task={task} />)
         ) : tasks ? (

@@ -18,6 +18,7 @@ export default function AddTask({
   const [taskDate, setTaskDate] = useState("");
   const [project, setProject] = useState("");
   const [showMain, setShowMain] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { currentUser } = useAuth();
   const userId = currentUser?.uid;
@@ -25,6 +26,7 @@ export default function AddTask({
   const { selectedProject } = useSelectedProjectValue();
 
   const addTask = () => {
+    setIsLoading(true);
     const projectId = project || selectedProject;
     let collatedDate = "";
 
@@ -50,6 +52,7 @@ export default function AddTask({
         .then(() => {
           setTask("");
           setProject("");
+          setIsLoading(false);
           setShowMain(false);
           toast("Task", msg.add);
         })
@@ -82,7 +85,7 @@ export default function AddTask({
 
           <div className="flex items-baseline justify-between px-4">
             <span className="items-center space-x-4">
-              <button className="button" onClick={addTask}>
+              <button disabled={isLoading} className="button" onClick={addTask}>
                 Add Task
               </button>
 
