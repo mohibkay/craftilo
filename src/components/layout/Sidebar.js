@@ -5,8 +5,7 @@ import Projects from "../project";
 import AddProject from "../project/AddProject";
 
 export default function Sidebar({ showSidebar, setShowSidebar }) {
-  const { setSelectedProject } = useSelectedProjectValue();
-  const [active, setActive] = useState("inbox");
+  const { selectedProject, setSelectedProject } = useSelectedProjectValue();
   const [showProjects, setShowProjects] = useState(true);
 
   const closeSidebar = () => {
@@ -25,10 +24,9 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
       <ul>
         <li
           className={`flex items-center space-x-3 py-2 px-3 cursor-pointer hover:bg-gray-light hover:font-bold ${
-            active === "inbox" && "bg-gray-light font-bold"
+            selectedProject === "INBOX" && "bg-gray-light font-bold"
           }`}
           onClick={() => {
-            setActive("inbox");
             setSelectedProject("INBOX");
             closeSidebar();
           }}
@@ -40,10 +38,9 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
         </li>
         <li
           className={`flex items-center space-x-3 py-2 px-3 cursor-pointer hover:bg-gray-light hover:font-bold ${
-            active === "today" && "bg-gray-light font-bold"
+            selectedProject === "TODAY" && "bg-gray-light font-bold"
           }`}
           onClick={() => {
-            setActive("today");
             setSelectedProject("TODAY");
             closeSidebar();
           }}
@@ -55,10 +52,9 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
         </li>
         <li
           className={`flex items-center space-x-3 py-2 px-3 cursor-pointer hover:bg-gray-light hover:font-bold ${
-            active === "next_7" && "bg-gray-light font-bold"
+            selectedProject === "NEXT_7" && "bg-gray-light font-bold"
           }`}
           onClick={() => {
-            setActive("next_7");
             setSelectedProject("NEXT_7");
             closeSidebar();
           }}
