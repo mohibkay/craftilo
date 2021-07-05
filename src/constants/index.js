@@ -18,3 +18,8 @@ export const msg = {
 };
 
 export const loaderColor = "#2ec4b6";
+
+export const guestLoginCred = {
+  email: "user@craftilo.com",
+  password: "S4PJfipaBAmLywM",
+};
