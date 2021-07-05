@@ -38,7 +38,7 @@ export default function Task({ task }) {
 
   return (
     <>
-      <li className="flex justify-between space-x-2 text-lg cursor-text border-b border-gray-primary m-2 px-2 py-1 pb-2">
+      <li className="flex justify-between space-x-2 text-lg cursor-text border-b border-gray-primary m-2 px-2 py-1 pb-2 group">
         <span className="grid grid-flow-col gap-3">
           <Checkbox id={task.docId} />
           <span>{task.task}</span>
