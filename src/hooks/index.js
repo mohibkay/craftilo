@@ -30,7 +30,7 @@ export const useTasks = (selectedProject) => {
             format(new Date(), "yyyy, M, dd")
           ))
         : selectedProject === "INBOX" || selectedProject === 0
-        ? (unsubscribe = unsubscribe.where("date", "==", ""))
+        ? (unsubscribe = unsubscribe.where("projectId", "==", "INBOX"))
         : unsubscribe;
 
     unsubscribe = unsubscribe.onSnapshot((snapshot) => {
@@ -50,7 +50,8 @@ export const useTasks = (selectedProject) => {
                 }).split(" ", 1);
 
                 return diff <= 7 && task.archived !== true;
-              } else return [];
+              }
+              return null;
             })
           : newTasks.filter((task) => task.archived !== true)
       );
