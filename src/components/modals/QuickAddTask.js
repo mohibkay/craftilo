@@ -50,17 +50,10 @@ export default function QuickTaskModal({
           />
 
           <div className="mt-4 space-x-4">
-            <button
-              type="submit"
-              disabled={!task}
-              className="bg-primary rounded text-white px-2.5 py-1 mt-2"
-            >
+            <button type="submit" disabled={!task} className="button">
               Add Task
             </button>
-            <button
-              onClick={closeModal}
-              className="bg-gray-light rounded px-3 py-1 mt-2"
-            >
+            <button onClick={closeModal} className="button-secondary">
               Cancel
             </button>
           </div>
