@@ -18,7 +18,7 @@ Craftilo is a Todoist clone where users can:
 - archive to-dos
 - schedule to-dos
 
-# Tech Stack
+## Tech Stack
 
 <b>Frontned</b>: Reactjs
 <br>
@@ -43,17 +43,17 @@ Craftilo is a Todoist clone where users can:
 
 <br>
 
-  # Functionlity
+  ## Functionlity
 
 - Add quick task
 - Schedule task
 - Create project wise task
 - Full CRUD operation
 
-# Upcoming Features
+## Upcoming Features
 
 - Dark mode
 
-# Contributing
+## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
