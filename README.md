@@ -3,14 +3,14 @@
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/mohibk)
 
 
-<p align="center">
+
   <a href="https://ibb.co/Qr1Q4QR"><img src="https://i.ibb.co/GcbpqpL/craftilo.png" alt="craftilo" border="0"></a>
   
-</p>
+<br>
 
-<p align="center">
   <a href="https://ibb.co/3CBjx2C"><img src="https://i.ibb.co/sVyNTnV/craftilo04.png" alt="craftilo04" border="0"></a>
- </p>
+  
+<br>
 
 
 
