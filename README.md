@@ -6,7 +6,7 @@
 
 <br>
 
-![Demo Video](https://media.giphy.com/media/3KMvYQDPWPHlLDQUpV/giphy.mp4)
+![Demo Video](https://media.giphy.com/media/3KMvYQDPWPHlLDQUpV/giphy.gif)
 
 <br>
 
