@@ -45,7 +45,7 @@ export default function Tasks({ showSidebar, setShowSidebar }) {
       }`}
     >
       <h2 className="text-xl ml-4">{projectName}</h2>
-      <ul className="">
+      <ul>
         {tasks?.length > 0 ? (
           tasks?.map((task) => <Task key={task.docId} task={task} />)
         ) : tasks ? (
@@ -62,8 +62,8 @@ export default function Tasks({ showSidebar, setShowSidebar }) {
       </ul>
 
       <div
-        className={`bg-black opacity-50 z-30 h-screen overflow-hidden w-full absolute top-0 right-0 ${
-          showSidebar ? "visible" : "invisible"
+        className={`bg-black opacity-50 z-30 overflow-hidden w-full absolute top-0 right-0 ${
+          showSidebar ? "visible h-screen" : "invisible"
         }`}
       />
 

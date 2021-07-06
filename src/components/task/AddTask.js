@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { firebase } from "../../lib/firebase";
+import { useEffect, useState } from "react";
+import { firebase, FieldValue } from "../../lib/firebase";
 import { useSelectedProjectValue } from "../../context";
 import { format, add } from "date-fns";
 import TaskDate from "./TaskDate";
@@ -18,13 +18,25 @@ export default function AddTask({
   const [taskDate, setTaskDate] = useState("");
   const [project, setProject] = useState("");
   const [showMain, setShowMain] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { currentUser } = useAuth();
   const userId = currentUser?.uid;
 
   const { selectedProject } = useSelectedProjectValue();
 
+  const closeAddTAsk = () => {
+    setShowMain(false);
+    setTask("");
+  };
+
+  useEffect(() => {
+    closeAddTAsk();
+    return () => {};
+  }, [selectedProject]);
+
   const addTask = () => {
+    setIsLoading(true);
     const projectId = project || selectedProject;
     let collatedDate = "";
 
@@ -46,10 +58,12 @@ export default function AddTask({
           task,
           date: collatedDate || taskDate,
           userId,
+          createdAt: FieldValue.serverTimestamp(),
         })
         .then(() => {
           setTask("");
           setProject("");
+          setIsLoading(false);
           setShowMain(false);
           toast("Task", msg.add);
         })
@@ -65,7 +79,7 @@ export default function AddTask({
             className="flex items-baseline space-x-3 cursor-pointer"
           >
             <span className="text-2xl text-primary">+</span>
-            <span className="">Add Task</span>
+            <span>Add Task</span>
           </div>
         </div>
       )}
@@ -82,14 +96,11 @@ export default function AddTask({
 
           <div className="flex items-baseline justify-between px-4">
             <span className="items-center space-x-4">
-              <button className="button" onClick={addTask}>
+              <button disabled={isLoading} className="button" onClick={addTask}>
                 Add Task
               </button>
 
-              <button
-                className="button-secondary"
-                onClick={() => setShowMain(false)}
-              >
+              <button className="button-secondary" onClick={closeAddTAsk}>
                 Cancel
               </button>
             </span>

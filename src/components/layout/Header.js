@@ -5,11 +5,10 @@ import { ROUTES } from "../../constants";
 import { useHistory } from "react-router-dom";
 
 export default function Header({
-  theme,
-  toggleTheme,
+  darkMode,
+  setDarkMode,
   showSidebar,
   setShowSidebar,
-  sidebarRef,
 }) {
   const [shouldShowMain, setShouldShowMain] = useState(false);
   const [openModal, setOpenModal] = useState(false);
@@ -28,7 +27,7 @@ export default function Header({
 
   return (
     <header
-      className={`${theme ? "bg-maroon" : "bg-primary"} sticky w-full h-12`}
+      className={`${darkMode ? "bg-black" : "bg-primary"} sticky w-full h-12`}
     >
       <nav className="flex justify-between items-center text-white py-2 px-4 md:px-0 text-xl max-w-screen-lg mx-auto">
         <div className="flex space-x-3 items-center">
@@ -40,7 +39,7 @@ export default function Header({
               {showSidebar ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-6 w-6 cursor-pointer"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -83,7 +82,7 @@ export default function Header({
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
+                  className="h-6 w-6 cursor-pointer"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -96,19 +95,38 @@ export default function Header({
                   />
                 </svg>
               </li>
-              <li onClick={() => toggleTheme((theme) => !theme)}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 cursor-pointer"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z"
-                    clipRule="evenodd"
-                  />
-                </svg>
+              <li onClick={() => setDarkMode((darkMode) => !darkMode)}>
+                {darkMode ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 cursor-pointer"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 cursor-pointer"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+                    />
+                  </svg>
+                )}
               </li>
             </ul>
           )}

@@ -46,7 +46,7 @@ export default function Project({ project, index }) {
   return (
     <>
       <span className={`mr-3 sidebar-dot-${index}`}>●</span>
-      <span className="sidebar__project-name">{project.name}</span>
+      <span className="truncate">{project.name}</span>
       <span className="ml-auto" onClick={(e) => e.stopPropagation()}>
         <MenuList
           setModalStatus={setShowConfirm}

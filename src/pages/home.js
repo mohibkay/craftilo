@@ -2,20 +2,21 @@ import { useState, useEffect } from "react";
 import Header from "../components/layout/Header";
 import Sidebar from "../components/layout/Sidebar";
 import Tasks from "../components/task";
+import { darkToast } from "../components/utils/Toast";
 
 export default function Dashboard() {
-  const [theme, toggleTheme] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
-    document.title = `Dashboard - Craftilo`;
-  }, []);
+    if (darkMode) darkToast("Dark Mode coming soon");
+  }, [darkMode]);
 
   return (
     <>
       <Header
-        theme={theme}
-        toggleTheme={toggleTheme}
+        darkMode={darkMode}
+        setDarkMode={setDarkMode}
         setShowSidebar={setShowSidebar}
         showSidebar={showSidebar}
       />

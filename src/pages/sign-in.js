@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../context/authContext";
-import { ROUTES } from "../constants";
+import { ROUTES, guestLoginCred } from "../constants";
 import { css } from "@emotion/react";
 import PropagateLoader from "react-spinners/PropagateLoader";
 import Header from "../components/layout/Header";
@@ -24,9 +24,7 @@ export default function Login() {
   const history = useHistory();
   const color = "#2ec4b6";
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleLogin = async () => {
     try {
       setError("");
       setLoading(true);
@@ -36,8 +34,19 @@ export default function Login() {
       setEmail("");
       setPassword("");
       setError("Failed to log in");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    handleLogin();
+  };
+
+  const handleGuestLogin = () => {
+    setEmail(guestLoginCred.email);
+    setPassword(guestLoginCred.password);
   };
 
   useEffect(() => {
@@ -48,18 +57,22 @@ export default function Login() {
     <>
       <Header />
       <div
-        className="flex flex-col md:flex-row space-y-12 md:space-y-0 items-center md:-space-x-16 w-screen justify-center"
+        className="flex flex-col md:flex-row space-y-12 md:space-y-0 items-center md:space-x-6 w-screen justify-center"
         style={{ height: "calc(100vh - 52px" }}
       >
-        <section className="px-8 md:px-0 -mt-16 md:mt-0 flex">
-          <img className="w-full md:w-4/5" src="/images/hero.svg" alt="hero" />
+        <section className="px-8 md:px-0 -mt-16 md:mt-8 flex">
+          <img
+            className="w-full md:w-11/12"
+            src="/images/hero.svg"
+            alt="hero"
+          />
         </section>
         <main className="w-11/12 md:w-1/4">
           <div className="w-full shadow-md rounded-md p-8 bg-white border border-gray-primary">
             <form onSubmit={handleSubmit}>
               <header className="flex items-center space-x-2 mb-2">
                 <img src="logo.png" alt="" className="w-6" />
-                <h1 className="text-2xl">Craftilo</h1>
+                <h1 className="text-2xl font-semibold">Craftilo</h1>
               </header>
 
               <h2 className="text-xl font-semibold">Login</h2>
@@ -109,14 +122,24 @@ export default function Login() {
                   )}
                 </button>
               </section>
+              <hr className="mt-4 border-gray-primary" />
+              <p className="text-center mt-2">
+                Don't have an account yet?{" "}
+                <Link
+                  to={ROUTES.SIGN_UP}
+                  className="text-primary font-semibold"
+                >
+                  Sign Up
+                </Link>
+              </p>
+              <p className="text-center mt-0.5">OR</p>
+              <button
+                onClick={handleGuestLogin}
+                className="w-full border py-0.5 focus:outline-none border-primary rounded my-3"
+              >
+                Guest Login
+              </button>
             </form>
-            <hr className="mt-4 border-gray-primary" />
-            <p className="text-center mt-2">
-              Don't have an account yet?{" "}
-              <Link to={ROUTES.SIGN_UP} className="text-primary font-semibold">
-                Sign Up
-              </Link>
-            </p>
           </div>
         </main>
       </div>

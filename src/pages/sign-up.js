@@ -29,6 +29,11 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (password.length < 6) {
+      setError("Password must be atleast 6 characters");
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       return;
@@ -68,7 +73,7 @@ export default function SignUp() {
             <form onSubmit={handleSubmit}>
               <header className="flex items-center space-x-2 mb-2">
                 <img src="logo.png" alt="" className="w-6" />
-                <h1 className="text-2xl">Craftilo</h1>
+                <h1 className="text-2xl font-semibold">Craftilo</h1>
               </header>
 
               <h2 className="text-xl font-semibold">Sign Up</h2>
