@@ -17,6 +17,7 @@ export default function QuickTaskModal({
 
   function closeModal() {
     setModalStatus(false);
+    setTask("");
   }
 
   const handleSubmit = (e) => {
