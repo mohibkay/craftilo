@@ -12,3 +12,19 @@ export const toast = (resource, msg = "") => {
     stopOnFocus: true,
   }).showToast();
 };
+
+export const darkToast = (resource, msg = "") => {
+  const message = `${resource} ${msg}`;
+  Toastify({
+    text: message,
+    duration: 3000,
+    close: true,
+    gravity: "top",
+    position: "center",
+    offset: {
+      y: "3rem",
+    },
+    backgroundColor: "var(--dark)",
+    stopOnFocus: true,
+  }).showToast();
+};
