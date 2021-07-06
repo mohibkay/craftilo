@@ -21,10 +21,10 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
       } `}
       style={{ height: "calc(100vh - 54px" }}
     >
-      <ul>
+      <ul className="mr-1">
         <li
-          className={`flex items-center space-x-3 py-2 px-3 cursor-pointer hover:bg-gray-light hover:font-bold ${
-            selectedProject === "INBOX" && "bg-gray-light font-bold"
+          className={`flex items-center space-x-3 py-2 px-3 rounded cursor-pointer hover:bg-gray-light hover:font-bold ${
+            selectedProject === "INBOX" && "bg-gray-light rounded font-bold"
           }`}
           onClick={() => {
             setSelectedProject("INBOX");
@@ -37,7 +37,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
           <span>Inbox</span>
         </li>
         <li
-          className={`flex items-center space-x-3 py-2 px-3 cursor-pointer hover:bg-gray-light hover:font-bold ${
+          className={`flex items-center space-x-3 rounded py-2 px-3 cursor-pointer hover:bg-gray-light hover:font-bold ${
             selectedProject === "TODAY" && "bg-gray-light font-bold"
           }`}
           onClick={() => {
@@ -51,7 +51,7 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
           <span>Today</span>
         </li>
         <li
-          className={`flex items-center space-x-3 py-2 px-3 cursor-pointer hover:bg-gray-light hover:font-bold ${
+          className={`flex items-center space-x-3 py-2 px-3 rounded cursor-pointer hover:bg-gray-light hover:font-bold ${
             selectedProject === "NEXT_7" && "bg-gray-light font-bold"
           }`}
           onClick={() => {
@@ -89,7 +89,9 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
         </span>
         <h2>Projects</h2>
       </div>
-      <ul>{showProjects && <Projects closeSidebar={closeSidebar} />}</ul>
+      <ul className="mr-1">
+        {showProjects && <Projects closeSidebar={closeSidebar} />}
+      </ul>
       <AddProject />
     </div>
   );

@@ -13,7 +13,7 @@ export default function Projects({ activeValue = null, closeSidebar }) {
         projects.map((project, index) => (
           <li
             key={project.projectId}
-            className={`flex group items-center px-3 py-2.5 cursor-pointer hover:bg-gray-light ${
+            className={`flex group items-center rounded px-3 py-2.5 cursor-pointer hover:bg-gray-light ${
               selectedProject === project.projectId &&
               "bg-gray-light font-medium"
             }`}
