@@ -6,7 +6,7 @@
 
 <br>
 
-<div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/3KMvYQDPWPHlLDQUpV" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/3KMvYQDPWPHlLDQUpV">via GIPHY</a></p>
+![Demo Video](https://media.giphy.com/media/3KMvYQDPWPHlLDQUpV/giphy.mp4)
 
 <br>
 
@@ -22,6 +22,14 @@ Craftilo is a Todoist clone where users can:
 
 <b>Frontned</b>: Reactjs
 <br>
+<b>Styling</b>: Tailwindcss
+<br>
+<b>Database</b>: Firestore
+<br>
+<b>Authentication</b>: Firebase auth
+<br>
+<b>Deployment</b>: CI/CD setup on Netlify
+
 <b>Additional NPM Libraries</b>
 
 - react-router-dom
@@ -34,13 +42,6 @@ Craftilo is a Todoist clone where users can:
 - lodash
 
 <br>
-<b>Styling</b>: Tailwindcss
-<br>
-<b>Database</b>: Firestore
-<br>
-<b>Authentication</b>: Firebase auth
-<br>
-<b>Deployment</b>: CI/CD setup on Netlify
 
   # Functionlity
 
@@ -52,3 +53,7 @@ Craftilo is a Todoist clone where users can:
 # Upcoming Features
 
 - Dark mode
+
+# Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
