@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { firebase, FieldValue } from "../../lib/firebase";
 import { useSelectedProjectValue } from "../../context";
 import { format, add } from "date-fns";
@@ -24,6 +24,16 @@ export default function AddTask({
   const userId = currentUser?.uid;
 
   const { selectedProject } = useSelectedProjectValue();
+
+  const closeAddTAsk = () => {
+    setShowMain(false);
+    setTask("");
+  };
+
+  useEffect(() => {
+    closeAddTAsk();
+    return () => {};
+  }, [selectedProject]);
 
   const addTask = () => {
     setIsLoading(true);
@@ -69,7 +79,7 @@ export default function AddTask({
             className="flex items-baseline space-x-3 cursor-pointer"
           >
             <span className="text-2xl text-primary">+</span>
-            <span className="">Add Task</span>
+            <span>Add Task</span>
           </div>
         </div>
       )}
@@ -90,10 +100,7 @@ export default function AddTask({
                 Add Task
               </button>
 
-              <button
-                className="button-secondary"
-                onClick={() => setShowMain(false)}
-              >
+              <button className="button-secondary" onClick={closeAddTAsk}>
                 Cancel
               </button>
             </span>
