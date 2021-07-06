@@ -34,14 +34,15 @@ Craftilo is a Todoist clone where users can:
 - date-fns
 - toastify-js
 - lodash
-  <br>
-  <b>Styling</b>: Tailwindcss
-  <br>
-  <b>Database</b>: Firestore
-  <br>
-  <b>Authentication</b>: Firebase auth
-  <br>
-  <b>Deployment</b>: CI/CD setup on Netlify
+
+<br>
+<b>Styling</b>: Tailwindcss
+<br>
+<b>Database</b>: Firestore
+<br>
+<b>Authentication</b>: Firebase auth
+<br>
+<b>Deployment</b>: CI/CD setup on Netlify
 
   # Functionlity
 
