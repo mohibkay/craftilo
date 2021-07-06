@@ -9,6 +9,7 @@
 
 <a href="https://ibb.co/CKC6TXP"><img src="https://i.ibb.co/CKC6TXP/4972ff05-57d8-4013-b6d5-39d56510d8eb.png" alt="4972ff05-57d8-4013-b6d5-39d56510d8eb" border="0"></a>
 
+<a href="https://ibb.co/CKC6TXP"><img src="https://i.ibb.co/HTwCkMh/4972ff05-57d8-4013-b6d5-39d56510d8eb.png" alt="4972ff05-57d8-4013-b6d5-39d56510d8eb" border="0"></a>
 
 
 Craftilo is a Todoist clone where users can:
