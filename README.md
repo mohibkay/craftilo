@@ -2,15 +2,11 @@
 
 [![Open Source Love](https://badges.frapsoft.com/os/v2/open-source.svg?v=103)](https://github.com/mohibk)
 
-
-
 <br>
 
 ![Demo Video](https://media.giphy.com/media/3KMvYQDPWPHlLDQUpV/giphy.gif)
 
 <br>
-
-
 
 Craftilo is a Todoist clone where users can:
 
@@ -20,7 +16,7 @@ Craftilo is a Todoist clone where users can:
 
 ## Tech Stack
 
-<b>Frontned</b>: Reactjs
+<b>Frontend</b>: Reactjs
 <br>
 <b>Styling</b>: Tailwindcss
 <br>
@@ -43,7 +39,7 @@ Craftilo is a Todoist clone where users can:
 
 <br>
 
-  ## Functionlity
+## Functionlity
 
 - Add quick task
 - Schedule task
@@ -55,5 +51,5 @@ Craftilo is a Todoist clone where users can:
 - Dark mode
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
