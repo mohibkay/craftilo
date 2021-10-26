@@ -11,7 +11,7 @@ export default function Checkbox({ id, archived }) {
         archived: !archived,
       })
       .then(() => {
-        toast("1 task completed");
+        toast(archived ? "Marked as uncompleted" : "1 task completed");
       });
   };
 
