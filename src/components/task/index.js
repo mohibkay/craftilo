@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTasks } from "../../hooks";
 
 import { collatedTasks } from "../../constants";
@@ -8,11 +8,18 @@ import { useProjectsValue } from "../../context";
 import Task from "./Task";
 import AddTask from "./AddTask";
 import Skeleton from "react-loading-skeleton";
+import { firebase } from "../../lib/firebase";
+import { useAuth } from "../../context/authContext";
 
-export default function Tasks({ showSidebar, setShowSidebar }) {
+const Tasks = ({ showSidebar, setShowSidebar }) => {
   const { selectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
   const { tasks } = useTasks(selectedProject);
+  const {
+    currentUser: { uid: userId },
+  } = useAuth();
+
+  const [archivedTasks, setArchived] = useState([]);
 
   let projectName = "";
 
@@ -36,6 +43,21 @@ export default function Tasks({ showSidebar, setShowSidebar }) {
     document.title = `${projectName} - Craftilo`;
   }, [projectName]);
 
+  useEffect(() => {
+    let unsubscribe = firebase
+      .firestore()
+      .collection("tasks")
+      .where("userId", "==", userId)
+      // .where("archived", "==", true)
+      .onSnapshot((snapshot) =>
+        setArchived(
+          snapshot.docs.map((doc) => ({ ...doc.data(), docId: doc.id }))
+        )
+      );
+
+    return () => unsubscribe();
+  }, [userId]);
+
   return (
     <div
       onClick={closeSidebar}
@@ -47,7 +69,7 @@ export default function Tasks({ showSidebar, setShowSidebar }) {
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul>
         {tasks?.length > 0 ? (
-          tasks?.map((task) => <Task key={task.docId} task={task} />)
+          tasks.map((task) => <Task key={task.docId} task={task} />)
         ) : tasks ? (
           <div className="px-4 mt-4">
             <li className="pb-2 mb-2 border-b border-gray-primary">
@@ -68,6 +90,30 @@ export default function Tasks({ showSidebar, setShowSidebar }) {
       />
 
       <AddTask />
+
+      <h2 className="mt-8">Archived tasks</h2>
+
+      <ul>
+        {archivedTasks?.length > 0 ? (
+          archivedTasks
+            ?.filter((task) => task.archived === true)
+            .map((task) => (
+              <Task key={task.docId} task={task} archived={true} />
+            ))
+        ) : archivedTasks ? (
+          <div className="px-4 mt-4">
+            <li className="pb-2 mb-2 border-b border-gray-primary">
+              No tasks yet
+            </li>
+          </div>
+        ) : (
+          <div className="px-4 my-3">
+            <Skeleton count={5} height={35} className="mb-2" />
+          </div>
+        )}
+      </ul>
     </div>
   );
-}
+};
+
+export default Tasks;
