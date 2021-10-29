@@ -73,51 +73,55 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
 
       <AddTask />
 
-      <div
-        className="flex items-end space-x-2 cursor-pointer"
-        onClick={handleAccordion}
-      >
-        <h2 className="mt-8 ml-4 text-xl text-gray-base">Archived tasks</h2>
-        {showArchivedList ? (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+      {archivedTasks.length ? (
+        <>
+          {" "}
+          <div
+            className="flex items-end space-x-2 cursor-pointer"
+            onClick={handleAccordion}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 15l7-7 7 7"
-            />
-          </svg>
-        ) : (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        )}
-      </div>
-
-      {showArchivedList && (
-        <ul>
-          {archivedTasks?.map((task) => (
-            <Task key={task.docId} task={task} archived={true} />
-          ))}
-        </ul>
-      )}
+            <h2 className="mt-8 ml-4 text-xl text-gray-base">Archived tasks</h2>
+            {showArchivedList ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 15l7-7 7 7"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            )}
+          </div>
+          {showArchivedList && (
+            <ul>
+              {archivedTasks?.map((task) => (
+                <Task key={task.docId} task={task} archived={true} />
+              ))}
+            </ul>
+          )}
+        </>
+      ) : null}
     </div>
   );
 };
