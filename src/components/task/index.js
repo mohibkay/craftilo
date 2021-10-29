@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useTasks } from "../../hooks";
-
 import { collatedTasks } from "../../constants";
 import { getTitle, getCollatedTitle, collatedTasksExist } from "../../helpers";
 import { useSelectedProjectValue } from "../../context";
@@ -8,18 +7,11 @@ import { useProjectsValue } from "../../context";
 import Task from "./Task";
 import AddTask from "./AddTask";
 import Skeleton from "react-loading-skeleton";
-import { firebase } from "../../lib/firebase";
-import { useAuth } from "../../context/authContext";
 
 const Tasks = ({ showSidebar, setShowSidebar }) => {
   const { selectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
-  const { tasks } = useTasks(selectedProject);
-  const {
-    currentUser: { uid: userId },
-  } = useAuth();
-
-  const [archivedTasks, setArchived] = useState([]);
+  const { tasks, archivedTasks } = useTasks(selectedProject);
 
   let projectName = "";
 
@@ -43,21 +35,6 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
     document.title = `${projectName} - Craftilo`;
   }, [projectName]);
 
-  useEffect(() => {
-    let unsubscribe = firebase
-      .firestore()
-      .collection("tasks")
-      .where("userId", "==", userId)
-      // .where("archived", "==", true)
-      .onSnapshot((snapshot) =>
-        setArchived(
-          snapshot.docs.map((doc) => ({ ...doc.data(), docId: doc.id }))
-        )
-      );
-
-    return () => unsubscribe();
-  }, [userId]);
-
   return (
     <div
       onClick={closeSidebar}
@@ -69,7 +46,7 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul>
         {tasks?.length > 0 ? (
-          tasks.map((task) => <Task key={task.docId} task={task} />)
+          tasks?.map((task) => <Task key={task.docId} task={task} />)
         ) : tasks ? (
           <div className="px-4 mt-4">
             <li className="pb-2 mb-2 border-b border-gray-primary">
@@ -91,26 +68,28 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
 
       <AddTask />
 
-      <h2 className="mt-8">Archived tasks</h2>
+      <div className="flex items-end space-x-2">
+        <h2 className="mt-8 ml-4 text-xl text-gray-base">Archived tasks</h2>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
+        </svg>
+      </div>
 
       <ul>
-        {archivedTasks?.length > 0 ? (
-          archivedTasks
-            ?.filter((task) => task.archived === true)
-            .map((task) => (
-              <Task key={task.docId} task={task} archived={true} />
-            ))
-        ) : archivedTasks ? (
-          <div className="px-4 mt-4">
-            <li className="pb-2 mb-2 border-b border-gray-primary">
-              No tasks yet
-            </li>
-          </div>
-        ) : (
-          <div className="px-4 my-3">
-            <Skeleton count={5} height={35} className="mb-2" />
-          </div>
-        )}
+        {archivedTasks?.map((task) => (
+          <Task key={task.docId} task={task} archived={true} />
+        ))}
       </ul>
     </div>
   );
