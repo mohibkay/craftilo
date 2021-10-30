@@ -73,7 +73,7 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
 
       <AddTask />
 
-      {archivedTasks.length ? (
+      {archivedTasks?.length ? (
         <>
           {" "}
           <div
