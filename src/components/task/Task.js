@@ -9,7 +9,7 @@ import EditTask from "../modals/EditTask";
 import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
 
-export default function Task({ task }) {
+export default function Task({ task, archived = false }) {
   const [modalStatus, setModalStatus] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [taskName, setTaskName] = useState(task.task);
@@ -40,8 +40,14 @@ export default function Task({ task }) {
     <>
       <li className="flex justify-between space-x-2 text-lg cursor-text border-b border-gray-primary m-2 px-2 py-1 pb-2 group">
         <span className="grid grid-flow-col gap-3">
-          <Checkbox id={task.docId} />
-          <span className="text-wrap">{task.task}</span>
+          <Checkbox id={task.docId} archived={archived} />
+          <span
+            className={`text-wrap ${
+              archived ? "line-through text-gray-fade" : ""
+            }`}
+          >
+            {task.task}
+          </span>
         </span>
 
         <span className="ml-auto">
