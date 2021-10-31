@@ -26,7 +26,7 @@ export default function SignUp() {
   const history = useHistory();
   const color = "#2ec4b6";
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     if (password.length < 6) {
