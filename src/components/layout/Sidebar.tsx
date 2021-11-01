@@ -4,7 +4,12 @@ import { useSelectedProjectValue } from "../../context";
 import Projects from "../project";
 import AddProject from "../project/AddProject";
 
-export default function Sidebar({ showSidebar, setShowSidebar }) {
+interface Props {
+  showSidebar: boolean;
+  setShowSidebar: (s: boolean) => void;
+}
+
+const Sidebar: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
   const { selectedProject, setSelectedProject } = useSelectedProjectValue();
   const [showProjects, setShowProjects] = useState(true);
 
@@ -95,4 +100,6 @@ export default function Sidebar({ showSidebar, setShowSidebar }) {
       <AddProject />
     </div>
   );
-}
+};
+
+export default Sidebar;
