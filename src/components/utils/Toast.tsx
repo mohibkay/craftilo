@@ -1,6 +1,7 @@
+// @ts-ignore
 import Toastify from "toastify-js";
 
-export const toast = (resource, msg = "") => {
+export const toast = (resource: string, msg = "") => {
   const message = `${resource} ${msg}`;
   Toastify({
     text: message,
@@ -13,7 +14,7 @@ export const toast = (resource, msg = "") => {
   }).showToast();
 };
 
-export const darkToast = (resource, msg = "") => {
+export const darkToast = (resource: string, msg = "") => {
   const message = `${resource} ${msg}`;
   Toastify({
     text: message,
@@ -23,6 +24,7 @@ export const darkToast = (resource, msg = "") => {
     position: "center",
     offset: {
       y: "3rem",
+      x: "",
     },
     backgroundColor: "var(--dark)",
     stopOnFocus: true,
