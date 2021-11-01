@@ -2,7 +2,17 @@ import Modal from "react-modal";
 
 Modal.setAppElement("*");
 
-export default function DeleteModal({
+interface Props {
+  modalStatus: boolean;
+  setModalStatus: (s: boolean) => void;
+  deleteProject: (s: string) => void;
+  projectId: string;
+  title: string;
+  deleteTask: (s: string) => void;
+  taskId: string;
+}
+
+const DeleteModal: React.FC<Props> = ({
   modalStatus,
   setModalStatus,
   deleteProject = () => {},
@@ -10,13 +20,7 @@ export default function DeleteModal({
   title = "",
   deleteTask = () => {},
   taskId = "",
-}) {
-  let subtitle;
-
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
-  }
-
+}) => {
   function closeModal() {
     setModalStatus(false);
   }
@@ -35,18 +39,12 @@ export default function DeleteModal({
     <div className="group">
       <Modal
         isOpen={modalStatus}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         className="modal"
         contentLabel="Delete Modal"
       >
         <div className="flex justify-between mb-4">
-          <h2
-            className="capitalize"
-            ref={(_subtitle) => (subtitle = _subtitle)}
-          >
-            Delete {title}?
-          </h2>
+          <h2 className="capitalize text-red-primary">Delete {title}?</h2>
           <button onClick={closeModal}>X</button>
         </div>
         <div>
@@ -66,4 +64,6 @@ export default function DeleteModal({
       </Modal>
     </div>
   );
-}
+};
+
+export default DeleteModal;

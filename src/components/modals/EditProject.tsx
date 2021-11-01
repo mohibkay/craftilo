@@ -2,7 +2,17 @@ import Modal from "react-modal";
 
 Modal.setAppElement("*");
 
-export default function EditModal({
+interface Props {
+  modalStatus: boolean;
+  setModalStatus: (s: boolean) => void;
+  projectName: string;
+  setProjectName: (s: string) => void;
+  handleUpdate: () => void;
+  addProject: () => void;
+  type: number;
+}
+
+const EditModal: React.FC<Props> = ({
   modalStatus,
   setModalStatus,
   projectName,
@@ -10,13 +20,7 @@ export default function EditModal({
   handleUpdate,
   addProject,
   type,
-}) {
-  let subtitle;
-
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
-  }
-
+}) => {
   function closeModal() {
     setModalStatus(false);
   }
@@ -36,16 +40,12 @@ export default function EditModal({
     <div className="group">
       <Modal
         isOpen={modalStatus}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         className="modal"
         contentLabel="Edit Project Modal"
       >
         <div className="flex justify-between mb-4">
-          <h2
-            className="capitalize"
-            ref={(_subtitle) => (subtitle = _subtitle)}
-          >
+          <h2 className="capitalize text-red-primary">
             {type === 100 ? "Add Project" : " Edit Project Title"}
           </h2>
           <button onClick={closeModal}>X</button>
@@ -71,4 +71,6 @@ export default function EditModal({
       </Modal>
     </div>
   );
-}
+};
+
+export default EditModal;

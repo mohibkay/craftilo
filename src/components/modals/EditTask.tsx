@@ -2,19 +2,21 @@ import Modal from "react-modal";
 
 Modal.setAppElement("*");
 
-export default function EditTask({
+interface Props {
+  modalStatus: boolean;
+  setModalStatus: (s: boolean) => void;
+  taskName: string;
+  setTaskName: (s: string) => void;
+  handleUpdate: () => void;
+}
+
+const EditTask: React.FC<Props> = ({
   modalStatus,
   setModalStatus,
   taskName,
   setTaskName,
   handleUpdate,
-}) {
-  let subtitle;
-
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
-  }
-
+}) => {
   function closeModal() {
     setModalStatus(false);
   }
@@ -30,18 +32,12 @@ export default function EditTask({
     <div className="group">
       <Modal
         isOpen={modalStatus}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         className="modal"
         contentLabel="Edit Task Modal"
       >
         <div className="flex justify-between mb-4">
-          <h2
-            className="capitalize"
-            ref={(_subtitle) => (subtitle = _subtitle)}
-          >
-            Edit Task
-          </h2>
+          <h2 className="capitalize text-red-primary">Edit Task</h2>
           <button onClick={closeModal}>X</button>
         </div>
         <div>
@@ -65,4 +61,6 @@ export default function EditTask({
       </Modal>
     </div>
   );
-}
+};
+
+export default EditTask;
