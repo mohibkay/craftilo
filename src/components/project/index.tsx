@@ -3,14 +3,24 @@ import { useSelectedProjectValue } from "../../context";
 import Project from "./Project";
 import Skeleton from "react-loading-skeleton";
 
-export default function Projects({ activeValue = null, closeSidebar }) {
+interface Props {
+  closeSidebar: () => void;
+}
+
+interface ProjectProps {
+  projectId: string;
+  name: string;
+  docId: string;
+}
+
+const Projects: React.FC<Props> = ({ closeSidebar }) => {
   const { selectedProject, setSelectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
 
   return (
     <>
       {projects?.length > 0 ? (
-        projects.map((project, index) => (
+        projects.map((project: ProjectProps, index: number) => (
           <li
             key={project.projectId}
             className={`flex group items-center rounded px-3 py-2.5 cursor-pointer hover:bg-gray-light ${
@@ -34,4 +44,6 @@ export default function Projects({ activeValue = null, closeSidebar }) {
       )}
     </>
   );
-}
+};
+
+export default Projects;

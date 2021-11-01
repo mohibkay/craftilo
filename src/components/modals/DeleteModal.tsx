@@ -5,11 +5,11 @@ Modal.setAppElement("*");
 interface Props {
   modalStatus: boolean;
   setModalStatus: (s: boolean) => void;
-  deleteProject: (s: string) => void;
-  projectId: string;
+  deleteProject?: (s: string) => void;
+  projectId?: string;
   title: string;
-  deleteTask: (s: string) => void;
-  taskId: string;
+  deleteTask?: (s: string) => void;
+  taskId?: string;
 }
 
 const DeleteModal: React.FC<Props> = ({

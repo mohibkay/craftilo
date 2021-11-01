@@ -7,9 +7,9 @@ interface Props {
   setModalStatus: (s: boolean) => void;
   projectName: string;
   setProjectName: (s: string) => void;
-  handleUpdate: () => void;
-  addProject: () => void;
-  type: number;
+  handleUpdate?: () => void;
+  addProject?: () => void;
+  type?: number;
 }
 
 const EditModal: React.FC<Props> = ({
@@ -28,9 +28,9 @@ const EditModal: React.FC<Props> = ({
   const handleEditProject = () => {
     if (projectName) {
       if (type === 100) {
-        addProject();
+        addProject?.();
       } else {
-        handleUpdate();
+        handleUpdate?.();
       }
       closeModal();
     }

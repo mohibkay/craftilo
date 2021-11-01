@@ -7,7 +7,7 @@ import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
 import AddProjectModal from "../modals/EditProject";
 
-export default function AddProject() {
+const AddProject = () => {
   const [show, setShow] = useState(false);
   const [projectName, setProjectName] = useState("");
 
@@ -58,4 +58,6 @@ export default function AddProject() {
       />
     </div>
   );
-}
+};
+
+export default AddProject;
