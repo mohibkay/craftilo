@@ -1,8 +1,13 @@
+import { ComponentType } from "react";
 import { Redirect, Route } from "react-router-dom";
 import { ROUTES } from "../../constants";
 import { useAuth } from "../../context/authContext";
 
-export default function ProtectedAuth({ component: Component, ...rest }) {
+interface Props {
+  component: ComponentType;
+}
+
+const ProtectedAuth = ({ component: Component, ...rest }: Props) => {
   const { currentUser } = useAuth();
 
   return (
@@ -12,9 +17,12 @@ export default function ProtectedAuth({ component: Component, ...rest }) {
         currentUser ? (
           <Redirect to={ROUTES.DASHBOARD} />
         ) : (
+          // @ts-ignore
           <Component {...props} />
         )
       }
     />
   );
-}
+};
+
+export default ProtectedAuth;
