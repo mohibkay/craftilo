@@ -10,15 +10,15 @@ import { toast } from "../utils/Toast";
 import ProjectList from "./ProjectList";
 
 interface Props {
-  showAddTaskMain: boolean;
-  openModal: boolean;
-  setOpenModal: (s: boolean) => void;
+  showAddTaskMain?: boolean;
+  openModal?: boolean;
+  setOpenModal?: (s: boolean) => void;
 }
 
 const AddTask: React.FC<Props> = ({
   showAddTaskMain = true,
-  openModal,
-  setOpenModal,
+  openModal = false,
+  setOpenModal = () => null,
 }) => {
   const [task, setTask] = useState("");
   const [taskDate, setTaskDate] = useState("");

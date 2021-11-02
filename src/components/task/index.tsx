@@ -38,9 +38,6 @@ const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
     setShowSidebar(false);
   };
 
-  console.log("projects");
-  console.log(projects);
-
   if (
     projects?.length > 0 &&
     selectedProject &&
@@ -92,11 +89,7 @@ const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
         }`}
       />
 
-      <AddTask
-        showAddTaskMain={false}
-        openModal={false}
-        setOpenModal={() => {}}
-      />
+      <AddTask />
 
       {/* @ts-ignore */}
       {archivedTasks?.length ? (
