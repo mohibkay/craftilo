@@ -5,6 +5,7 @@ import { useAuth } from "../../context/authContext";
 
 interface Props {
   component: ComponentType;
+  path: string;
 }
 
 const ProtectedAuth = ({ component: Component, ...rest }: Props) => {

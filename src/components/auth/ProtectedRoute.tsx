@@ -5,6 +5,8 @@ import { useAuth } from "../../context/authContext";
 
 interface Props {
   component: ComponentType;
+  exact?: boolean;
+  path: string;
 }
 
 const ProtectedRoute = ({ component: Component, ...rest }: Props) => {
