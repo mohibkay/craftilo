@@ -2,7 +2,11 @@ import { Menu, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import { format, add } from "date-fns";
 
-export default function TaskDate({ setTaskDate }) {
+interface Props {
+  setTaskDate: (s: string) => void;
+}
+
+const TaskDate: React.FC<Props> = ({ setTaskDate }) => {
   return (
     <Menu
       className="border border-gray-primary"
@@ -29,6 +33,7 @@ export default function TaskDate({ setTaskDate }) {
     >
       <MenuItem
         className="border-b border-gray-primary"
+        // @ts-ignore TODO: fix type
         styles={{ active: "bg-primary" }}
         onClick={() => setTaskDate(format(new Date(), "yyyy, M, dd"))}
       >
@@ -94,4 +99,6 @@ export default function TaskDate({ setTaskDate }) {
       </MenuItem>
     </Menu>
   );
-}
+};
+
+export default TaskDate;

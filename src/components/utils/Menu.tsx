@@ -4,7 +4,7 @@ import "@szhsin/react-menu/dist/index.css";
 interface Props {
   setModalStatus: (s: boolean) => void;
   setShowEditModal: (s: boolean) => void;
-  type: number;
+  type?: number;
 }
 
 const MenuList: React.FC<Props> = ({

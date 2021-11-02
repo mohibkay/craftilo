@@ -25,9 +25,6 @@ const Project: React.FC<Props> = ({ project, index }) => {
   const { projects, setProjects } = useProjectsValue();
   const { setSelectedProject } = useSelectedProjectValue();
 
-  console.log("project");
-  console.log(project);
-
   const deleteProject = (docId: string) => {
     firebase
       .firestore()

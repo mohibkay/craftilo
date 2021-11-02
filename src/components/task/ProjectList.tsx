@@ -2,7 +2,16 @@ import { Menu, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 import { useProjectsValue } from "../../context";
 
-export default function ProjectList({ setProject }) {
+interface Props {
+  setProject: (s: string) => void;
+}
+
+interface Project {
+  projectId: string;
+  name: string;
+}
+
+const ProjectList: React.FC<Props> = ({ setProject }) => {
   const { projects } = useProjectsValue();
 
   return (
@@ -30,10 +39,11 @@ export default function ProjectList({ setProject }) {
       }
     >
       {projects.length > 0 ? (
-        projects.map((project) => (
+        projects.map((project: Project) => (
           <MenuItem
             key={project.projectId}
             className="border-b border-gray-primary last:border-0"
+            // @ts-ignore TODO: fix type
             styles={{ active: "bg-primary" }}
             onClick={() => setProject(project.projectId)}
           >
@@ -47,4 +57,6 @@ export default function ProjectList({ setProject }) {
       )}
     </Menu>
   );
-}
+};
+
+export default ProjectList;

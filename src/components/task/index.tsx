@@ -8,7 +8,21 @@ import Task from "./Task";
 import AddTask from "./AddTask";
 import Skeleton from "react-loading-skeleton";
 
-const Tasks = ({ showSidebar, setShowSidebar }) => {
+interface Props {
+  showSidebar: boolean;
+  setShowSidebar: (s: boolean) => void;
+}
+
+// interface TaskProps {
+//   tasks: {
+//     docId: string;
+//   }[];
+//   archivedTasks: {
+//     docId: string;
+//   }[];
+// }
+
+const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
   const { selectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
   const { tasks, archivedTasks } = useTasks(selectedProject);
@@ -50,8 +64,12 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
     >
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul>
+        {/* @ts-ignore  */}
         {tasks?.length > 0 ? (
-          tasks?.map((task) => <Task key={task.docId} task={task} />)
+          // @ts-ignore TODO: fix types
+          tasks?.map((task: { docId: string; task: string }) => (
+            <Task key={task.docId} task={task} archived={false} />
+          ))
         ) : tasks ? (
           <div className="px-4 mt-4">
             <li className="pb-2 mb-2 border-b border-gray-primary">
@@ -71,8 +89,13 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
         }`}
       />
 
-      <AddTask />
+      <AddTask
+        showAddTaskMain={false}
+        openModal={false}
+        setOpenModal={() => {}}
+      />
 
+      {/* @ts-ignore */}
       {archivedTasks?.length ? (
         <>
           {" "}
@@ -115,7 +138,8 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
           </div>
           {showArchivedList && (
             <ul>
-              {archivedTasks?.map((task) => (
+              {/* @ts-ignore */}
+              {archivedTasks?.map((task: { docId: string; task: string }) => (
                 <Task key={task.docId} task={task} archived={true} />
               ))}
             </ul>
