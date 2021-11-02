@@ -32,11 +32,14 @@ const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
     setShowArchivedList((showArchivedList) => !showArchivedList);
   };
 
-  let projectName = "";
+  let projectName: string | undefined;
 
   const closeSidebar = () => {
     setShowSidebar(false);
   };
+
+  console.log("projects");
+  console.log(projects);
 
   if (
     projects?.length > 0 &&
