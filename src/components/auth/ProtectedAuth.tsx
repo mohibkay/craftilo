@@ -9,6 +9,7 @@ interface Props {
 }
 
 const ProtectedAuth = ({ component: Component, ...rest }: Props) => {
+  // @ts-ignore
   const { currentUser } = useAuth();
 
   return (
