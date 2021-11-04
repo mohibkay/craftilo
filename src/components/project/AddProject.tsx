@@ -14,6 +14,7 @@ const AddProject = () => {
   const projectId = generatePushId();
   const { projects, setProjects } = useProjectsValue();
   const {
+    // @ts-ignore
     currentUser: { uid: userId },
   } = useAuth();
   const { setSelectedProject } = useSelectedProjectValue();
