@@ -1,15 +1,13 @@
-import { ComponentType } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, RouteComponentProps } from "react-router-dom";
 import { ROUTES } from "../../constants";
 import { useAuth } from "../../context/authContext";
 
 interface Props {
-  component: ComponentType;
+  component: React.ComponentType<RouteComponentProps>;
   path: string;
 }
 
 const ProtectedAuth = ({ component: Component, ...rest }: Props) => {
-  // @ts-ignore
   const { currentUser } = useAuth();
 
   return (
@@ -19,7 +17,6 @@ const ProtectedAuth = ({ component: Component, ...rest }: Props) => {
         currentUser ? (
           <Redirect to={ROUTES.DASHBOARD} />
         ) : (
-          // @ts-ignore
           <Component {...props} />
         )
       }

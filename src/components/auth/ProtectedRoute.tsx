@@ -1,10 +1,9 @@
-import { ComponentType } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, RouteComponentProps } from "react-router-dom";
 import { ROUTES } from "../../constants";
 import { useAuth } from "../../context/authContext";
 
 interface Props {
-  component: ComponentType;
+  component: React.ComponentType<RouteComponentProps>;
   exact?: boolean;
   path: string;
 }
@@ -16,7 +15,6 @@ const ProtectedRoute = ({ component: Component, ...rest }: Props) => {
     <Route
       {...rest}
       render={(props) =>
-        // @ts-ignore
         currentUser ? <Component {...props} /> : <Redirect to={ROUTES.LOGIN} />
       }
     />
