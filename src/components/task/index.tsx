@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useTasks } from "../../hooks";
+import { useTasks, TaskInterface } from "../../hooks";
 import { collatedTasks } from "../../constants";
 import { getTitle, getCollatedTitle, collatedTasksExist } from "../../helpers";
 import { useSelectedProjectValue } from "../../context";
@@ -12,15 +12,6 @@ interface Props {
   showSidebar: boolean;
   setShowSidebar: (s: boolean) => void;
 }
-
-// interface TaskProps {
-//   tasks: {
-//     docId: string;
-//   }[];
-//   archivedTasks: {
-//     docId: string;
-//   }[];
-// }
 
 const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
   const { selectedProject } = useSelectedProjectValue();
@@ -55,6 +46,9 @@ const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
     document.title = `${projectName} - Craftilo`;
   }, [projectName]);
 
+  console.log("tasks");
+  console.log(tasks);
+
   return (
     <div
       onClick={closeSidebar}
@@ -65,9 +59,7 @@ const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
     >
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul>
-        {/* @ts-ignore  */}
-        {tasks?.length > 0 ? (
-          // @ts-ignore TODO: fix types
+        {tasks && tasks.length ? (
           tasks?.map((task: { docId: string; task: string }) => (
             <Task key={task.docId} task={task} archived={false} />
           ))
@@ -92,10 +84,8 @@ const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
 
       <AddTask />
 
-      {/* @ts-ignore */}
       {archivedTasks?.length ? (
         <>
-          {" "}
           <div
             className="flex items-end space-x-2 cursor-pointer"
             onClick={handleAccordion}
@@ -135,8 +125,7 @@ const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
           </div>
           {showArchivedList && (
             <ul>
-              {/* @ts-ignore */}
-              {archivedTasks?.map((task: { docId: string; task: string }) => (
+              {archivedTasks?.map((task: TaskInterface) => (
                 <Task key={task.docId} task={task} archived={true} />
               ))}
             </ul>

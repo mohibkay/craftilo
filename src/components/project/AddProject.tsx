@@ -21,6 +21,7 @@ const AddProject = () => {
 
   const addProject = () => {
     projectName &&
+      projects &&
       firebase
         .firestore()
         .collection("projects")
@@ -31,7 +32,6 @@ const AddProject = () => {
           createdAt: FieldValue.serverTimestamp(),
         })
         .then(() => {
-          // @ts-ignore
           setProjects([...projects]);
           setProjectName("");
           setShow(false);
