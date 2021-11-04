@@ -26,32 +26,32 @@ const Project: React.FC<Props> = ({ project, index }) => {
   const { setSelectedProject } = useSelectedProjectValue();
 
   const deleteProject = (docId: string) => {
-    firebase
-      .firestore()
-      .collection("projects")
-      .doc(docId)
-      .delete()
-      .then(() => {
-        // @ts-ignore
-        setProjects([...projects]);
-        setSelectedProject("INBOX");
-        toast("Project", msg.delete);
-      });
+    projects &&
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(docId)
+        .delete()
+        .then(() => {
+          setProjects([...projects]);
+          setSelectedProject("INBOX");
+          toast("Project", msg.delete);
+        });
   };
 
   const handleUpdate = () => {
-    firebase
-      .firestore()
-      .collection("projects")
-      .doc(project.docId)
-      .update({
-        name: projectName,
-      })
-      .then(() => {
-        // @ts-ignore
-        setProjects([...projects]);
-        toast("Project", msg.update);
-      });
+    projects &&
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(project.docId)
+        .update({
+          name: projectName,
+        })
+        .then(() => {
+          setProjects([...projects]);
+          toast("Project", msg.update);
+        });
   };
 
   return (
