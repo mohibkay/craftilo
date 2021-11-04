@@ -38,7 +38,7 @@ const ProjectList: React.FC<Props> = ({ setProject }) => {
         </svg>
       }
     >
-      {projects.length > 0 ? (
+      {projects?.length ? (
         projects.map((project: Project) => (
           <MenuItem
             key={project.projectId}
