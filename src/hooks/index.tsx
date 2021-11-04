@@ -6,9 +6,20 @@ import { format, formatDistanceToNowStrict, isFuture } from "date-fns";
 import { isEqual } from "lodash/lang";
 import { useAuth } from "../context/authContext";
 
+export interface TaskInterface {
+  archived: boolean;
+  data: string;
+  docId: string;
+  projectId: string;
+  task: string;
+  userId: string;
+}
+
 export const useTasks = (selectedProject) => {
-  const [tasks, setTasks] = useState(null);
-  const [archivedTasks, setArchivedTasks] = useState(null);
+  const [tasks, setTasks] = useState<TaskInterface[] | null>(null);
+  const [archivedTasks, setArchivedTasks] = useState<TaskInterface[] | null>(
+    null
+  );
 
   const {
     currentUser: { uid: userId },
