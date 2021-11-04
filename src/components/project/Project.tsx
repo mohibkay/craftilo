@@ -32,6 +32,7 @@ const Project: React.FC<Props> = ({ project, index }) => {
       .doc(docId)
       .delete()
       .then(() => {
+        // @ts-ignore
         setProjects([...projects]);
         setSelectedProject("INBOX");
         toast("Project", msg.delete);
@@ -47,6 +48,7 @@ const Project: React.FC<Props> = ({ project, index }) => {
         name: projectName,
       })
       .then(() => {
+        // @ts-ignore
         setProjects([...projects]);
         toast("Project", msg.update);
       });

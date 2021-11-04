@@ -39,6 +39,7 @@ const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
   };
 
   if (
+    projects &&
     projects?.length > 0 &&
     selectedProject &&
     !collatedTasksExist(selectedProject)

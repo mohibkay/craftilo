@@ -19,7 +19,7 @@ const Projects: React.FC<Props> = ({ closeSidebar }) => {
 
   return (
     <>
-      {projects?.length ? (
+      {projects && projects.length > 0 ? (
         projects.map((project: ProjectProps, index: number) => (
           <li
             key={project.projectId}
@@ -35,13 +35,13 @@ const Projects: React.FC<Props> = ({ closeSidebar }) => {
             <Project project={project} index={index} />
           </li>
         ))
-      ) : (
+      ) : projects ? (
         <div className="px-4 mt-2">
           <li>No projects yet</li>
         </div>
+      ) : (
+        <Skeleton count={3} height={31} className="mb-2.5" />
       )}
-
-      {!projects && <Skeleton count={3} height={31} className="mb-2.5" />}
     </>
   );
 };

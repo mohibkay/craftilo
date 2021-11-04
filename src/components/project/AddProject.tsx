@@ -31,6 +31,7 @@ const AddProject = () => {
           createdAt: FieldValue.serverTimestamp(),
         })
         .then(() => {
+          // @ts-ignore
           setProjects([...projects]);
           setProjectName("");
           setShow(false);
