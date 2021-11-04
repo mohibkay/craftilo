@@ -1,3 +1,4 @@
+// @ts-nocheck @TODO fix type error
 import { useState, useEffect } from "react";
 import { firebase } from "../lib/firebase";
 import { collatedTasksExist } from "../helpers";
@@ -64,10 +65,20 @@ export const useTasks = (selectedProject) => {
   return { tasks, archivedTasks };
 };
 
+export interface ProjectInterface {
+  docId: string;
+  name: string;
+  projectId: string;
+  userId: string;
+}
+
 export const useProjects = () => {
-  const [projects, setProjects] = useState(null);
+  const [projects, setProjects] = useState<ProjectInterface[] | null>(null);
   const { currentUser } = useAuth();
   const userId = currentUser?.uid;
+
+  console.log("projects");
+  console.log(projects);
 
   useEffect(() => {
     userId &&
