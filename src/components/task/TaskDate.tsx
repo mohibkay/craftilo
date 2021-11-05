@@ -33,8 +33,6 @@ const TaskDate: React.FC<Props> = ({ setTaskDate }) => {
     >
       <MenuItem
         className="border-b border-gray-primary"
-        // @ts-ignore TODO: fix type
-        styles={{ active: "bg-primary" }}
         onClick={() => setTaskDate(format(new Date(), "yyyy, M, dd"))}
       >
         <svg

@@ -43,8 +43,6 @@ const ProjectList: React.FC<Props> = ({ setProject }) => {
           <MenuItem
             key={project.projectId}
             className="border-b border-gray-primary last:border-0"
-            // @ts-ignore TODO: fix type
-            styles={{ active: "bg-primary" }}
             onClick={() => setProject(project.projectId)}
           >
             {project.name}

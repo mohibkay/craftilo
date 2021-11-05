@@ -44,8 +44,6 @@ const MenuList: React.FC<Props> = ({
     >
       <MenuItem
         className="border-b border-gray-primary"
-        // @ts-ignore
-        styles={{ active: "bg-primary" }}
         onClick={() => setShowEditModal(true)}
       >
         <svg
