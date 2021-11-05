@@ -1,4 +1,3 @@
-// @ts-ignore
 import Toastify from "toastify-js";
 
 export const toast = (resource: string, msg = "") => {
