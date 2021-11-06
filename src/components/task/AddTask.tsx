@@ -9,11 +9,17 @@ import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
 import ProjectList from "./ProjectList";
 
-export default function AddTask({
+interface Props {
+  showAddTaskMain?: boolean;
+  openModal?: boolean;
+  setOpenModal?: (s: boolean) => void;
+}
+
+const AddTask: React.FC<Props> = ({
   showAddTaskMain = true,
-  openModal,
-  setOpenModal,
-}) {
+  openModal = false,
+  setOpenModal = () => null,
+}) => {
   const [task, setTask] = useState("");
   const [taskDate, setTaskDate] = useState("");
   const [project, setProject] = useState("");
@@ -122,4 +128,6 @@ export default function AddTask({
       />
     </div>
   );
-}
+};
+
+export default AddTask;

@@ -1,8 +1,20 @@
 import { Menu, MenuItem } from "@szhsin/react-menu";
 import "@szhsin/react-menu/dist/index.css";
 
-export default function MenuList({ setModalStatus, setShowEditModal, type }) {
-  const handleClick = (e) => e.stopPropagation();
+interface Props {
+  setModalStatus: (s: boolean) => void;
+  setShowEditModal: (s: boolean) => void;
+  type?: number;
+}
+
+const MenuList: React.FC<Props> = ({
+  setModalStatus,
+  setShowEditModal,
+  type,
+}) => {
+  const handleClick = (e: { stopPropagation: () => any }) => {
+    e.stopPropagation();
+  };
 
   return (
     <Menu
@@ -32,7 +44,6 @@ export default function MenuList({ setModalStatus, setShowEditModal, type }) {
     >
       <MenuItem
         className="border-b border-gray-primary"
-        styles={{ active: "bg-primary" }}
         onClick={() => setShowEditModal(true)}
       >
         <svg
@@ -64,4 +75,6 @@ export default function MenuList({ setModalStatus, setShowEditModal, type }) {
       </MenuItem>
     </Menu>
   );
-}
+};
+
+export default MenuList;

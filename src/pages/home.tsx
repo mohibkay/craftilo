@@ -4,7 +4,7 @@ import Sidebar from "../components/layout/Sidebar";
 import Tasks from "../components/task";
 import { darkToast } from "../components/utils/Toast";
 
-export default function Dashboard() {
+const Dashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -26,4 +26,6 @@ export default function Dashboard() {
       </main>
     </>
   );
-}
+};
+
+export default Dashboard;

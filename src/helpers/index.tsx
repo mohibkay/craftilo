@@ -1,19 +1,31 @@
 import { collatedTasks } from "../constants";
 
-export const getTitle = (projects, projectId) =>
+interface ProjectProps {
+  docId: string;
+  name: string;
+  projectId: string;
+  userId: string;
+}
+
+interface CollatedTaskProps {
+  key: string;
+  name: string;
+}
+
+export const getTitle = (projects: ProjectProps[], projectId: string) =>
   projects.find((project) => project.projectId === projectId);
 
-export const getCollatedTitle = (projects, key) =>
+export const getCollatedTitle = (projects: CollatedTaskProps[], key: string) =>
   projects.find((project) => project.key === key);
 
-export const collatedTasksExist = (selectedProject) =>
+export const collatedTasksExist = (selectedProject: string) =>
   collatedTasks.find((task) => task.key === selectedProject);
 
 export const generatePushId = (() => {
   const PUSH_CHARS =
     "-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz";
 
-  const lastRandChars = [];
+  const lastRandChars: number[] = [];
 
   return function () {
     let now = new Date().getTime();

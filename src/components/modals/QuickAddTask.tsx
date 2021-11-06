@@ -2,25 +2,27 @@ import Modal from "react-modal";
 
 Modal.setAppElement("*");
 
-export default function QuickTaskModal({
+interface Props {
+  setModalStatus: (s: boolean) => void;
+  modalStatus: boolean;
+  task: string;
+  setTask: (s: string) => void;
+  addTask: () => void;
+}
+
+const QuickTaskModal: React.FC<Props> = ({
   setModalStatus,
   modalStatus,
   task,
   setTask,
   addTask,
-}) {
-  let subtitle;
-
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
-  }
-
+}) => {
   function closeModal() {
     setModalStatus(false);
     setTask("");
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     if (task) {
       addTask();
@@ -30,14 +32,9 @@ export default function QuickTaskModal({
 
   return (
     <div>
-      <Modal
-        isOpen={modalStatus}
-        onAfterOpen={afterOpenModal}
-        onRequestClose={closeModal}
-        className="modal"
-      >
+      <Modal isOpen={modalStatus} onRequestClose={closeModal} className="modal">
         <div className="flex justify-between mb-4">
-          <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Quick Task</h2>
+          <h2 className="capitalize text-red-primary">Quick Task</h2>
           <button onClick={closeModal}>X</button>
         </div>
         <form onSubmit={handleSubmit}>
@@ -61,4 +58,6 @@ export default function QuickTaskModal({
       </Modal>
     </div>
   );
-}
+};
+
+export default QuickTaskModal;

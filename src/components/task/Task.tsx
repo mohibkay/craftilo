@@ -9,12 +9,20 @@ import EditTask from "../modals/EditTask";
 import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
 
-export default function Task({ task, archived = false }) {
+interface Props {
+  task: {
+    task: string;
+    docId: string;
+  };
+  archived: boolean;
+}
+
+const Task: React.FC<Props> = ({ task, archived }) => {
   const [modalStatus, setModalStatus] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [taskName, setTaskName] = useState(task.task);
 
-  const deleteTask = (taskId) => {
+  const deleteTask = (taskId: string) => {
     firebase
       .firestore()
       .collection("tasks")
@@ -75,4 +83,6 @@ export default function Task({ task, archived = false }) {
       />
     </>
   );
-}
+};
+
+export default Task;

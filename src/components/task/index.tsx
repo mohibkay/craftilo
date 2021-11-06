@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useTasks } from "../../hooks";
+import { useTasks, TaskInterface } from "../../hooks";
 import { collatedTasks } from "../../constants";
 import { getTitle, getCollatedTitle, collatedTasksExist } from "../../helpers";
 import { useSelectedProjectValue } from "../../context";
@@ -8,7 +8,12 @@ import Task from "./Task";
 import AddTask from "./AddTask";
 import Skeleton from "react-loading-skeleton";
 
-const Tasks = ({ showSidebar, setShowSidebar }) => {
+interface Props {
+  showSidebar: boolean;
+  setShowSidebar: (s: boolean) => void;
+}
+
+const Tasks: React.FC<Props> = ({ showSidebar, setShowSidebar }) => {
   const { selectedProject } = useSelectedProjectValue();
   const { projects } = useProjectsValue();
   const { tasks, archivedTasks } = useTasks(selectedProject);
@@ -18,13 +23,14 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
     setShowArchivedList((showArchivedList) => !showArchivedList);
   };
 
-  let projectName = "";
+  let projectName: string | undefined;
 
   const closeSidebar = () => {
     setShowSidebar(false);
   };
 
   if (
+    projects &&
     projects?.length > 0 &&
     selectedProject &&
     !collatedTasksExist(selectedProject)
@@ -40,6 +46,9 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
     document.title = `${projectName} - Craftilo`;
   }, [projectName]);
 
+  console.log("tasks");
+  console.log(tasks);
+
   return (
     <div
       onClick={closeSidebar}
@@ -50,8 +59,10 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
     >
       <h2 className="text-xl ml-4">{projectName}</h2>
       <ul>
-        {tasks?.length > 0 ? (
-          tasks?.map((task) => <Task key={task.docId} task={task} />)
+        {tasks && tasks.length ? (
+          tasks?.map((task: { docId: string; task: string }) => (
+            <Task key={task.docId} task={task} archived={false} />
+          ))
         ) : tasks ? (
           <div className="px-4 mt-4">
             <li className="pb-2 mb-2 border-b border-gray-primary">
@@ -75,7 +86,6 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
 
       {archivedTasks?.length ? (
         <>
-          {" "}
           <div
             className="flex items-end space-x-2 cursor-pointer"
             onClick={handleAccordion}
@@ -115,7 +125,7 @@ const Tasks = ({ showSidebar, setShowSidebar }) => {
           </div>
           {showArchivedList && (
             <ul>
-              {archivedTasks?.map((task) => (
+              {archivedTasks?.map((task: TaskInterface) => (
                 <Task key={task.docId} task={task} archived={true} />
               ))}
             </ul>

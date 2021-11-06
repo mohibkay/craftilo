@@ -1,8 +1,13 @@
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, RouteComponentProps } from "react-router-dom";
 import { ROUTES } from "../../constants";
 import { useAuth } from "../../context/authContext";
 
-export default function ProtectedAuth({ component: Component, ...rest }) {
+interface Props {
+  component: React.ComponentType<RouteComponentProps>;
+  path: string;
+}
+
+const ProtectedAuth = ({ component: Component, ...rest }: Props) => {
   const { currentUser } = useAuth();
 
   return (
@@ -17,4 +22,6 @@ export default function ProtectedAuth({ component: Component, ...rest }) {
       }
     />
   );
-}
+};
+
+export default ProtectedAuth;

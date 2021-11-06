@@ -2,32 +2,28 @@ import Modal from "react-modal";
 
 Modal.setAppElement("*");
 
-export default function EditModal({
+interface Props {
+  modalStatus: boolean;
+  setModalStatus: (s: boolean) => void;
+  taskName: string;
+  setTaskName: (s: string) => void;
+  handleUpdate: () => void;
+}
+
+const EditTask: React.FC<Props> = ({
   modalStatus,
   setModalStatus,
-  projectName,
-  setProjectName,
+  taskName,
+  setTaskName,
   handleUpdate,
-  addProject,
-  type,
-}) {
-  let subtitle;
-
-  function afterOpenModal() {
-    subtitle.style.color = "#f00";
-  }
-
+}) => {
   function closeModal() {
     setModalStatus(false);
   }
 
   const handleEditProject = () => {
-    if (projectName) {
-      if (type === 100) {
-        addProject();
-      } else {
-        handleUpdate();
-      }
+    if (taskName) {
+      handleUpdate();
       closeModal();
     }
   };
@@ -36,32 +32,26 @@ export default function EditModal({
     <div className="group">
       <Modal
         isOpen={modalStatus}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         className="modal"
-        contentLabel="Edit Project Modal"
+        contentLabel="Edit Task Modal"
       >
         <div className="flex justify-between mb-4">
-          <h2
-            className="capitalize"
-            ref={(_subtitle) => (subtitle = _subtitle)}
-          >
-            {type === 100 ? "Add Project" : " Edit Project Title"}
-          </h2>
+          <h2 className="capitalize text-red-primary">Edit Task</h2>
           <button onClick={closeModal}>X</button>
         </div>
         <div>
           <input
             type="text"
-            value={projectName}
-            onChange={({ target }) => setProjectName(target.value)}
+            value={taskName}
+            onChange={({ target }) => setTaskName(target.value)}
             className="w-full px-2 py-1.5 rounded my-2 border border-gray-primary bg-white focus:outline-none"
             placeholder="Name your project"
           />
 
           <div className="flex items-center space-x-4 mt-4">
-            <button className="button w-20 mt-2" onClick={handleEditProject}>
-              {type === 100 ? "Add" : "Update"}
+            <button className="button w-20" onClick={handleEditProject}>
+              Update
             </button>
             <button className="button-secondary w-20" onClick={closeModal}>
               Cancel
@@ -71,4 +61,6 @@ export default function EditModal({
       </Modal>
     </div>
   );
-}
+};
+
+export default EditTask;

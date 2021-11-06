@@ -1,7 +1,16 @@
 import { createContext, useContext, useState } from "react";
 
-export const SelectedProjectContext = createContext();
-export const SelectedProjectProvider = ({ children }) => {
+interface ProjectProviderProps {
+  children: React.ReactNode;
+}
+
+interface ProjectsContext {
+  selectedProject: string;
+  setSelectedProject: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SelectedProjectContext = createContext({} as ProjectsContext);
+export const SelectedProjectProvider = ({ children }: ProjectProviderProps) => {
   const [selectedProject, setSelectedProject] = useState("INBOX");
 
   return (

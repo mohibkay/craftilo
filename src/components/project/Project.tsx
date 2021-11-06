@@ -8,7 +8,16 @@ import MenuList from "../utils/Menu";
 import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
 
-export default function Project({ project, index }) {
+interface Props {
+  index: number;
+  project: {
+    projectId: string;
+    name: string;
+    docId: string;
+  };
+}
+
+const Project: React.FC<Props> = ({ project, index }) => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [projectName, setProjectName] = useState(project.name);
@@ -16,31 +25,33 @@ export default function Project({ project, index }) {
   const { projects, setProjects } = useProjectsValue();
   const { setSelectedProject } = useSelectedProjectValue();
 
-  const deleteProject = (docId) => {
-    firebase
-      .firestore()
-      .collection("projects")
-      .doc(docId)
-      .delete()
-      .then(() => {
-        setProjects([...projects]);
-        setSelectedProject("INBOX");
-        toast("Project", msg.delete);
-      });
+  const deleteProject = (docId: string) => {
+    projects &&
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(docId)
+        .delete()
+        .then(() => {
+          setProjects([...projects]);
+          setSelectedProject("INBOX");
+          toast("Project", msg.delete);
+        });
   };
 
   const handleUpdate = () => {
-    firebase
-      .firestore()
-      .collection("projects")
-      .doc(project.docId)
-      .update({
-        name: projectName,
-      })
-      .then(() => {
-        setProjects([...projects]);
-        toast("Project", msg.update);
-      });
+    projects &&
+      firebase
+        .firestore()
+        .collection("projects")
+        .doc(project.docId)
+        .update({
+          name: projectName,
+        })
+        .then(() => {
+          setProjects([...projects]);
+          toast("Project", msg.update);
+        });
   };
 
   return (
@@ -72,4 +83,6 @@ export default function Project({ project, index }) {
       </span>
     </>
   );
-}
+};
+
+export default Project;

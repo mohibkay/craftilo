@@ -13,7 +13,7 @@ const override = css`
   border-color: #2ec4b6;
 `;
 
-export default function Login() {
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -39,7 +39,7 @@ export default function Login() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     handleLogin();
   };
@@ -145,4 +145,6 @@ export default function Login() {
       </div>
     </>
   );
-}
+};
+
+export default Login;

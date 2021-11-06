@@ -1,7 +1,12 @@
 import { firebase } from "../../lib/firebase";
 import { toast } from "../utils/Toast";
 
-export default function Checkbox({ id, archived }) {
+interface Props {
+  id: string;
+  archived: boolean;
+}
+
+const Checkbox: React.FC<Props> = ({ id, archived }) => {
   const archiveTask = () => {
     firebase
       .firestore()
@@ -55,4 +60,6 @@ export default function Checkbox({ id, archived }) {
       </div>
     </div>
   );
-}
+};
+
+export default Checkbox;

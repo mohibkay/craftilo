@@ -4,13 +4,19 @@ import AddTask from "../task/AddTask";
 import { ROUTES } from "../../constants";
 import { useHistory } from "react-router-dom";
 
-export default function Header({
+interface Props {
+  darkMode?: boolean;
+  setDarkMode?: (s: boolean) => void;
+  showSidebar?: boolean;
+  setShowSidebar?: (s: boolean) => void;
+}
+
+const Header: React.FC<Props> = ({
   darkMode,
   setDarkMode,
   showSidebar,
   setShowSidebar,
-}) {
-  const [shouldShowMain, setShouldShowMain] = useState(false);
+}) => {
   const [openModal, setOpenModal] = useState(false);
 
   const history = useHistory();
@@ -22,7 +28,7 @@ export default function Header({
   };
 
   const handleShowSidebar = () => {
-    setShowSidebar(!showSidebar);
+    setShowSidebar?.(!showSidebar);
   };
 
   return (
@@ -95,7 +101,7 @@ export default function Header({
                   />
                 </svg>
               </li>
-              <li onClick={() => setDarkMode((darkMode) => !darkMode)}>
+              <li onClick={() => setDarkMode?.(!darkMode)}>
                 {darkMode ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -154,11 +160,11 @@ export default function Header({
 
       <AddTask
         showAddTaskMain={false}
-        shouldShowMain={shouldShowMain}
         openModal={openModal}
         setOpenModal={setOpenModal}
-        setShouldShowMain={setShouldShowMain}
       />
     </header>
   );
-}
+};
+
+export default Header;

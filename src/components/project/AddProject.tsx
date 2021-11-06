@@ -7,19 +7,21 @@ import { msg } from "../../constants";
 import { toast } from "../utils/Toast";
 import AddProjectModal from "../modals/EditProject";
 
-export default function AddProject() {
+const AddProject = () => {
   const [show, setShow] = useState(false);
   const [projectName, setProjectName] = useState("");
 
   const projectId = generatePushId();
   const { projects, setProjects } = useProjectsValue();
   const {
+    // @ts-ignore
     currentUser: { uid: userId },
   } = useAuth();
   const { setSelectedProject } = useSelectedProjectValue();
 
   const addProject = () => {
     projectName &&
+      projects &&
       firebase
         .firestore()
         .collection("projects")
@@ -58,4 +60,6 @@ export default function AddProject() {
       />
     </div>
   );
-}
+};
+
+export default AddProject;
